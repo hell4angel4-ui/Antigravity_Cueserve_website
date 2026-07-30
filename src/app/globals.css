@@ -1,0 +1,28 @@
+/* Webflow shared stylesheet from CDN */
+@import url('https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/css/arooth.webflow.shared.aea604727.css');
+
+/* IX2 visibility: elements start hidden, revealed by Webflow animation engine */
+html.w-mod-js:not(.w-mod-ix3) :is(
+  .primary-button-text,
+  .primary-button-text-hover,
+  .primary-button-arrow,
+  .primary-button-arrow-hover,
+  .after-banner-wrapper,
+  .banner-letter-o,
+  .after-banner-content-wrap,
+  .after-banner-ticker-wrap,
+  .after-banner-inner,
+  .after-banner-wrap,
+  .single-banner-letter._01,
+  .single-banner-letter._02,
+  .single-banner-letter._03,
+  .single-banner-letter._04,
+  .single-banner-letter._05
+) {
+  visibility: hidden !important;
+}
+
+/* Hide "Made in Webflow" badge */
+.w-webflow-badge {
+  display: none !important;
+}

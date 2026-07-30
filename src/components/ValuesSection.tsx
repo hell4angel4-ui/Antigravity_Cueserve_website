@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 interface ValueItem {
   id: string;
@@ -45,13 +45,52 @@ const valuesData: ValueItem[] = [
 ];
 
 export default function ValuesSection() {
-  const [activeTab, setActiveTab] = useState<string>("mission");
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [isManualSelection, setIsManualSelection] = useState<boolean>(false);
+
+  // Hook into scroll progress over the 250vh sticky scroll area
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      if (isManualSelection) return;
+      if (latest < 0.33) {
+        setActiveTab(0);
+      } else if (latest < 0.66) {
+        setActiveTab(1);
+      } else {
+        setActiveTab(2);
+      }
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress, isManualSelection]);
+
+  const handleTabClick = (index: number) => {
+    setIsManualSelection(true);
+    setActiveTab(index);
+    // Reset manual flag after user stops clicking
+    setTimeout(() => setIsManualSelection(false), 2000);
+  };
 
   return (
-    <section className="section values-section-container">
-      <div className="container">
-        <div className="mission-vh-wrap" style={{ height: "auto" }}>
-          <div className="mission-sticky-wrap" style={{ position: "relative", top: 0 }}>
+    <section className="section values-section-container" style={{ padding: 0 }}>
+      {/* Scroll Track Area (250vh height on desktop for sticky scroll effect) */}
+      <div ref={containerRef} className="mission-vh-wrap" style={{ height: "220vh", position: "relative" }}>
+        {/* Sticky Viewport Container */}
+        <div
+          className="mission-sticky-wrap"
+          style={{
+            position: "sticky",
+            top: "6rem",
+            paddingTop: "2rem",
+            paddingBottom: "4rem"
+          }}
+        >
+          <div className="container">
             {/* Header Title Row */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -111,83 +150,87 @@ export default function ValuesSection() {
               </div>
             </motion.div>
 
-            {/* Interactive Grid & Animated Tabs */}
-            <div className="mission-flex-wrap gap-6">
+            {/* Tab Nav Header Row */}
+            <div className="mission-tabs-header flex items-center justify-between gap-4 mb-6 border-b border-gray-200/60 pb-4">
               {valuesData.map((item, index) => {
-                const isActive = activeTab === item.id;
+                const isActive = activeTab === index;
                 return (
-                  <motion.div
+                  <button
                     key={item.id}
-                    initial={{ y: 30, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-                    className={`single-mission-wrapper ${item.num} flex-1 cursor-pointer`}
-                    onClick={() => setActiveTab(item.id)}
+                    type="button"
+                    onClick={() => handleTabClick(index)}
+                    className="flex-1 flex items-center justify-center py-3 px-6 rounded-full transition-all duration-300 relative cursor-pointer outline-none border-none"
+                    style={{
+                      background: isActive
+                        ? "linear-gradient(135deg, #2d8cff 0%, #0056b3 100%)"
+                        : "var(--alice-blue, #edf3ff)",
+                      boxShadow: isActive ? "0 8px 24px rgba(45, 140, 255, 0.35)" : "none"
+                    }}
                   >
-                    {/* Top Tab Pill Header */}
-                    <div className={`mission-counter-wrap ${item.num}`}>
-                      <div
-                        className={`mission-name-wrap relative transition-all duration-300 ${
-                          isActive ? "active-pill" : ""
-                        }`}
-                        style={{
-                          background: isActive
-                            ? "linear-gradient(135deg, #2d8cff 0%, #0056b3 100%)"
-                            : "var(--alice-blue, #edf3ff)",
-                          color: isActive ? "#ffffff" : "#0e1422",
-                          boxShadow: isActive ? "0 6px 18px rgba(45, 140, 255, 0.35)" : "none",
-                        }}
-                      >
-                        <div
-                          className={`mission-name ${item.num}`}
-                          style={{ color: isActive ? "#ffffff" : "#0e1422", fontWeight: 600 }}
-                        >
-                          {item.label}
-                        </div>
-                      </div>
-                      <div className="mission-border"></div>
-                    </div>
-
-                    {/* Mission Card Wrap */}
-                    <motion.div
-                      whileHover={{ y: -4 }}
-                      transition={{ duration: 0.2 }}
-                      className={`mission-card-wrap transition-all duration-300 ${
-                        isActive ? "ring-2 ring-blue-500 shadow-xl" : "hover:shadow-md"
-                      }`}
-                      style={{
-                        background: isActive ? "#ffffff" : "var(--alice-blue, #f4f7ff)",
-                        border: isActive ? "1px solid #d0e1ff" : "1px solid transparent",
-                        padding: "2rem",
-                        borderRadius: "20px"
-                      }}
+                    <span
+                      className="text-base font-semibold tracking-tight"
+                      style={{ color: isActive ? "#ffffff" : "#0e1422" }}
                     >
-                      <div className="mission-card-content-wrap">
-                        {/* Circle Icon */}
-                        <div className="mission-icon-wrap mb-6" style={{ width: "4.5rem", height: "4.5rem" }}>
-                          <img src={item.icon} loading="lazy" alt={`${item.label} Icon`} className="mission-icon" style={{ width: "2.25rem", height: "2.25rem" }} />
-                        </div>
-
-                        {/* Contents Flex */}
-                        <div className="mission-contents-flex flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                          <div className="mission-details-wrap max-w-full">
-                            <h3 className="mission-title text-xl font-semibold mb-2" style={{ color: "#0e1422" }}>
-                              {item.title}
-                            </h3>
-                            <p className="mission-details text-sm leading-relaxed" style={{ color: "#505b70" }}>
-                              {item.description}
-                            </p>
-                          </div>
-                          <div className="mission-image-wrap shrink-0 rounded-xl overflow-hidden" style={{ width: "90px", height: "90px" }}>
-                            <img src={item.image} loading="lazy" alt={`${item.label} Image`} className="mission-image w-full h-full object-cover" />
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </motion.div>
+                      {item.label}
+                    </span>
+                  </button>
                 );
               })}
+            </div>
+
+            {/* Focused Cards Area with Smooth Animated Entrance */}
+            <div className="mission-cards-display position-relative min-h-[320px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 25, scale: 0.98, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, y: 0, scale: 1.0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -25, scale: 0.98, filter: "blur(4px)" }}
+                  transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1.0] }}
+                  className="single-mission-card-active rounded-3xl p-8 md:p-12 border border-blue-100 shadow-xl"
+                  style={{ background: "#ffffff" }}
+                >
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="flex-1">
+                      {/* Circle Icon */}
+                      <div
+                        className="mission-icon-wrap mb-6 flex items-center justify-center rounded-full shadow-md"
+                        style={{
+                          width: "5.5rem",
+                          height: "5.5rem",
+                          background: "linear-gradient(135deg, #6199ff 0%, #c0d7ff 100%)"
+                        }}
+                      >
+                        <img
+                          src={valuesData[activeTab].icon}
+                          loading="lazy"
+                          alt="Mission Icon"
+                          style={{ width: "2.75rem", height: "2.75rem" }}
+                        />
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                        {valuesData[activeTab].title}
+                      </h3>
+                      <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
+                        {valuesData[activeTab].description}
+                      </p>
+                    </div>
+
+                    {/* Featured Right Image */}
+                    <div
+                      className="mission-image-wrap shrink-0 rounded-2xl overflow-hidden shadow-lg"
+                      style={{ width: "260px", height: "200px" }}
+                    >
+                      <img
+                        src={valuesData[activeTab].image}
+                        loading="lazy"
+                        alt={valuesData[activeTab].title}
+                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>

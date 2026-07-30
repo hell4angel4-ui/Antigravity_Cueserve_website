@@ -103,61 +103,85 @@ export default function TeamMembersSection() {
           </h2>
         </motion.div>
 
-        {/* Member Grid with Staggered Entrance */}
+        {/* Member Grid with Staggered Webflow Entrance & Card Hover */}
         <div className="members-wrapper">
           <div className="member-grid-wrap">
             {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ y: 30, opacity: 0, filter: "blur(5px)" }}
-                whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: (index % 4) * 0.12, ease: "easeOut" }}
-                whileHover={{ y: -6 }}
-                className="single-member-wrap"
-              >
+              <div key={member.id} className="single-member-wrap">
                 <div className="member-contents-wrap">
+                  {/* Image with Entrance Scale/Blur and Hover Zoom */}
                   <div className="member-image-wrap overflow-hidden">
-                    <img
+                    <motion.img
+                      initial={{ scale: 1.1, opacity: 0, filter: "blur(3px)" }}
+                      whileInView={{ scale: 1.0, opacity: 1, filter: "blur(0px)" }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.8, delay: (index % 4) * 0.12, ease: "easeOut" }}
+                      whileHover={{ scale: 1.08 }}
                       src={member.image}
                       loading="lazy"
                       alt={member.name}
-                      className="member-image transition-transform duration-500 hover:scale-105"
+                      className="member-image"
                     />
                   </div>
+
+                  {/* Details Card Box with Slide-Up Reveal */}
                   <div className="member-details-wrapper">
-                    <div className="member-details-contents">
+                    <motion.div
+                      initial={{ y: 30, opacity: 0, filter: "blur(5px)" }}
+                      whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.7, delay: (index % 4) * 0.12 + 0.1, ease: "easeOut" }}
+                      className="member-details-contents"
+                    >
                       <div className="member-name-wrap">
                         <span className="member-name">{member.name}</span>
                       </div>
                       <div className="member-designation">{member.designation}</div>
                       <div className="member-social-links-wrap">
                         {member.socials.twitter && (
-                          <a href={member.socials.twitter} target="_blank" rel="noopener noreferrer" className="single-member-social-link">
+                          <motion.a
+                            whileHover={{ y: -3, scale: 1.1 }}
+                            href={member.socials.twitter}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="single-member-social-link"
+                          >
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
-                          </a>
+                          </motion.a>
                         )}
                         {member.socials.facebook && (
-                          <a href={member.socials.facebook} target="_blank" rel="noopener noreferrer" className="single-member-social-link">
+                          <motion.a
+                            whileHover={{ y: -3, scale: 1.1 }}
+                            href={member.socials.facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="single-member-social-link"
+                          >
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036c-2.048 0-2.433.961-2.433 2.45v1.516h3.614l-.478 3.667h-3.136v7.98c7.406-.826 12.879-7.07 12.879-14.545C24 4.093 18.627-1.28 12 -1.28S0 4.093 0 11.146c0 7.475 5.473 13.719 12.879 14.545z"/>
                             </svg>
-                          </a>
+                          </motion.a>
                         )}
                         {member.socials.linkedin && (
-                          <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="single-member-social-link">
+                          <motion.a
+                            whileHover={{ y: -3, scale: 1.1 }}
+                            href={member.socials.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="single-member-social-link"
+                          >
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                               <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
                             </svg>
-                          </a>
+                          </motion.a>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

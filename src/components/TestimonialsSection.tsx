@@ -68,7 +68,7 @@ export default function TestimonialsSection() {
 
   const current = testimonialsData[currentIndex];
 
-  const variants: Variants = {
+  const slideVariants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 50 : -50,
       opacity: 0,
@@ -87,6 +87,8 @@ export default function TestimonialsSection() {
       transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1.0] }
     })
   };
+
+  const numbersList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   return (
     <section className="section testimonials position-relative overflow-hidden">
@@ -124,7 +126,7 @@ export default function TestimonialsSection() {
             <motion.div
               key={currentIndex}
               custom={direction}
-              variants={variants}
+              variants={slideVariants}
               initial="enter"
               animate="center"
               exit="exit"
@@ -205,40 +207,114 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Testimonials Stats Counters */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="testimonials-stats-wrapper py-8 border-t border-b border-gray-100"
-        >
+        {/* Testimonials Rolling Slot-Machine Stats Counters */}
+        <div className="testimonials-stats-wrapper py-8 border-t border-b border-gray-100">
           <div className="testimonials-stats-flex grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            {/* Stat 1: 99% */}
             <div className="single-testimonial-stat-wrap">
-              <div className="testimonial-counter-wrap flex justify-center items-baseline gap-1 text-4xl font-extrabold text-gray-900 mb-2">
-                <span>99</span>
-                <span className="text-blue-600">%</span>
+              <div className="testimonial-counter-wrap flex justify-center items-center overflow-hidden h-14 text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
+                {/* Digit 1: 9 */}
+                <div className="overflow-hidden h-14">
+                  <motion.div
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: "-90%" }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1.0] }}
+                    className="flex flex-col"
+                  >
+                    {numbersList.map((n) => (
+                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
+                    ))}
+                  </motion.div>
+                </div>
+                {/* Digit 2: 9 */}
+                <div className="overflow-hidden h-14">
+                  <motion.div
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: "-90%" }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1.0] }}
+                    className="flex flex-col"
+                  >
+                    {numbersList.map((n) => (
+                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
+                    ))}
+                  </motion.div>
+                </div>
+                <span className="text-blue-600 ml-1">%</span>
               </div>
               <div className="testimonial-stat-text text-sm font-medium text-gray-600">Client Satisfaction Rate</div>
             </div>
 
+            {/* Stat 2: 150+ */}
             <div className="single-testimonial-stat-wrap">
-              <div className="testimonial-counter-wrap flex justify-center items-baseline gap-1 text-4xl font-extrabold text-gray-900 mb-2">
-                <span>150</span>
-                <span className="text-blue-600">+</span>
+              <div className="testimonial-counter-wrap flex justify-center items-center overflow-hidden h-14 text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
+                <div className="overflow-hidden h-14">
+                  <motion.div
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: "-10%" }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1.0] }}
+                    className="flex flex-col"
+                  >
+                    {numbersList.map((n) => (
+                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
+                    ))}
+                  </motion.div>
+                </div>
+                <div className="overflow-hidden h-14">
+                  <motion.div
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: "-50%" }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1.0] }}
+                    className="flex flex-col"
+                  >
+                    {numbersList.map((n) => (
+                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
+                    ))}
+                  </motion.div>
+                </div>
+                <div className="overflow-hidden h-14">
+                  <motion.div
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: "0%" }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1.0] }}
+                    className="flex flex-col"
+                  >
+                    {numbersList.map((n) => (
+                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
+                    ))}
+                  </motion.div>
+                </div>
+                <span className="text-blue-600 ml-1">+</span>
               </div>
               <div className="testimonial-stat-text text-sm font-medium text-gray-600">Global Brands Served Worldwide</div>
             </div>
 
+            {/* Stat 3: 5X */}
             <div className="single-testimonial-stat-wrap">
-              <div className="testimonial-counter-wrap flex justify-center items-baseline gap-1 text-4xl font-extrabold text-gray-900 mb-2">
-                <span>5</span>
-                <span className="text-blue-600">X</span>
+              <div className="testimonial-counter-wrap flex justify-center items-center overflow-hidden h-14 text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
+                <div className="overflow-hidden h-14">
+                  <motion.div
+                    initial={{ y: "0%" }}
+                    whileInView={{ y: "-50%" }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1.0] }}
+                    className="flex flex-col"
+                  >
+                    {numbersList.map((n) => (
+                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
+                    ))}
+                  </motion.div>
+                </div>
+                <span className="text-blue-600 ml-1">X</span>
               </div>
               <div className="testimonial-stat-text text-sm font-medium text-gray-600">Average Growth Achieved</div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

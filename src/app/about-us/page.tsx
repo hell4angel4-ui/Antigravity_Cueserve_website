@@ -1,7 +1,7 @@
 import AboutHeroBanner from '@/components/AboutHeroBanner';
 import AboutSection from '@/components/AboutSection';
-import TeamMembersSection from '@/components/TeamMembersSection';
 import ValuesSection from '@/components/ValuesSection';
+import TeamMembersSection from '@/components/TeamMembersSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FaqSection from '@/components/FaqSection';
 
@@ -15,8 +15,8 @@ export default function AboutPage() {
     <main className="about-us-page">
       <AboutHeroBanner />
       <AboutSection isAboutPage={true} />
-      <TeamMembersSection />
       <ValuesSection />
+      <TeamMembersSection />
       <TestimonialsSection />
       <FaqSection />
     </main>

@@ -11,7 +11,7 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
   return (
     <section className="section about-us">
       <div className="container">
-        <div className={`about-us-title-wrapper ${isAboutPage ? "mb-0" : ""}`}>
+        <div className={`about-us-title-wrapper ${isAboutPage ? "mb-12" : ""}`}>
           <div className="about-us-title-flex">
             {/* Left Column Animation */}
             <motion.div
@@ -49,17 +49,17 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                  className="mission-vision-wrap"
+                  className="mission-vision-wrap mt-8"
                 >
-                  <div className="our-mission-wrap">
-                    <h2 className="our-mission-title">Our Mission</h2>
-                    <p className="our-mission-details">
+                  <div className="our-mission-wrap mb-6">
+                    <h2 className="our-mission-title text-xl font-bold mb-2">Our Mission</h2>
+                    <p className="our-mission-details text-gray-600">
                       We reimagine your brand's digital presence and change how individuals interact with your brand.
                     </p>
                   </div>
                   <div className="our-mission-wrap">
-                    <h2 className="our-mission-title">Our Vision</h2>
-                    <p className="our-mission-details">
+                    <h2 className="our-mission-title text-xl font-bold mb-2">Our Vision</h2>
+                    <p className="our-mission-details text-gray-600">
                       Our vision is to create meaningful digital experiences that combine creativity, clarity, and purpose.
                     </p>
                   </div>
@@ -85,7 +85,7 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
                     We combine strategy, creativity, and technology to help brands grow in the modern digital landscape. Every project we take on is fueled by curiosity, guided by precision.
                   </p>
                   {!isAboutPage && (
-                    <Link data-wf--primary-button--variant="alice-blue" href="/about-us" className="primary-button w-variant-3b35c6e6-bf39-22a4-81e5-2d58550c88a7 w-inline-block">
+                    <Link data-wf--primary-button--variant="alice-blue" href="/about-us" className="primary-button w-variant-3b35c6e6-bf39-22a4-81e5-2d58550c88a7 w-inline-block mt-4">
                       <div className="primary-button-flex">
                         <div className="primary-button-text-wrap">
                           <div className="primary-button-text">More About Us</div>
@@ -109,13 +109,13 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
                     whileInView={{ scale: 1.0, opacity: 1, filter: "blur(0px)" }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
-                    className="about-us-image-wrap"
+                    className="about-us-image-wrap mt-6 overflow-hidden rounded-2xl"
                   >
                     <img
                       src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6942f0e8d0fe21fb280fe263_About-Us-Image.jpg"
                       loading="lazy"
                       alt="About Image"
-                      className="about-us-image"
+                      className="about-us-image w-full rounded-2xl"
                     />
                   </motion.div>
                 )}
@@ -125,53 +125,40 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
         </div>
       </div>
 
-      {!isAboutPage && (
-        <>
-          <div className="about-us-section-title-divider"></div>
-          <div className="container">
-            <div className="about-vh-wrap">
-              <div className="about-stat-wrapper">
-                <div className="about-stat-flex">
-                  <div className="about-stat-image-wrap">
-                    <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691f399a64049d0423783289_About-Stat-Image.jpg" loading="lazy" alt="Stat Image" className="about-stat-image"/>
-                  </div>
-                  <div className="about-stats-counters-flex">
-                    <div className="single-testimonial-stat-wrap about-us">
-                      <div className="testimonial-counter-wrap about-us">
-                        <div className="counter-number-row _1">
-                          <h2 className="single-number about-us">9</h2>
-                          <h2 className="single-number about-us">9</h2>
-                          <h2 className="single-number about-us">%</h2>
-                        </div>
-                      </div>
-                      <div className="testimonial-stat-text">Clients Satisfied and Repeating</div>
-                    </div>
-                    <div className="single-testimonial-stat-wrap about-us">
-                      <div className="testimonial-counter-wrap about-us">
-                        <div className="counter-number-row _1">
-                          <h2 className="single-number about-us">1</h2>
-                          <h2 className="single-number about-us">5</h2>
-                          <h2 className="single-number about-us">0</h2>
-                          <h2 className="single-number about-us">+</h2>
-                        </div>
-                      </div>
-                      <div className="testimonial-stat-text">Projects Completed In 24 Countries</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="about-stat-blur"></div>
+      <div className="about-us-section-title-divider"></div>
+      <div className="container">
+        <div className="about-vh-wrap">
+          <div className="about-stat-wrapper">
+            <div className="about-stat-flex">
+              <div className="about-stat-image-wrap">
+                <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691f399a64049d0423783289_About-Stat-Image.jpg" loading="lazy" alt="Stat Image" className="about-stat-image"/>
               </div>
-              <div className="about-video-wrap">
-                <div data-poster-url="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c%2F691ce85f982bdec6d59a627e_About-Video_poster.0000000.jpg" className="about-video w-background-video w-background-video-atom">
-                  <video id="497c147f-e0be-3b6c-03c7-3bee10cc4469-video" autoPlay loop style={{ backgroundImage: "url('https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c%2F691ce85f982bdec6d59a627e_About-Video_poster.0000000.jpg')" }} muted playsInline data-object-fit="cover">
-                    <source src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c%2F691ce85f982bdec6d59a627e_About-Video_mp4.mp4"/>
-                  </video>
+              <div className="about-stats-counters-flex">
+                <div className="single-testimonial-stat-wrap about-us">
+                  <div className="testimonial-counter-wrap about-us flex items-center text-4xl font-bold text-gray-900">
+                    <span>99%</span>
+                  </div>
+                  <div className="testimonial-stat-text text-sm text-gray-600">Clients Satisfied and Repeating</div>
+                </div>
+                <div className="single-testimonial-stat-wrap about-us">
+                  <div className="testimonial-counter-wrap about-us flex items-center text-4xl font-bold text-gray-900">
+                    <span>150+</span>
+                  </div>
+                  <div className="testimonial-stat-text text-sm text-gray-600">Projects Completed In 24 Countries</div>
                 </div>
               </div>
             </div>
+            <div className="about-stat-blur"></div>
           </div>
-        </>
-      )}
+          <div className="about-video-wrap">
+            <div data-poster-url="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c%2F691ce85f982bdec6d59a627e_About-Video_poster.0000000.jpg" className="about-video w-background-video w-background-video-atom">
+              <video id="497c147f-e0be-3b6c-03c7-3bee10cc4469-video" autoPlay loop style={{ backgroundImage: "url('https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c%2F691ce85f982bdec6d59a627e_About-Video_poster.0000000.jpg')" }} muted playsInline data-object-fit="cover">
+                <source src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c%2F691ce85f982bdec6d59a627e_About-Video_mp4.mp4"/>
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function HeroBanner() {
   return (
@@ -47,7 +50,7 @@ export default function HeroBanner() {
                           </div>
                         </div>
                         
-                        <div data-w-id="c4036d56-f9af-23e6-447a-45ca236e0589" className="after-banner-ticker-wrap">
+                        <div className="after-banner-ticker-wrap">
                           <div className="after-banner-ticker-flex">
                             <div className="after-banner-ticker-item">
                               <div className="after-banner-ticker-text"><span className="after-banner-ticker-text-italic">Real Results *</span> Modern <span className="after-banner-ticker-text-mark">Design</span> <span className="after-banner-ticker-text-italic">*</span> <span className="after-banner-ticker-text-bold">Real</span> <span className="after-banner-ticker-text-mark">Results</span></div>
@@ -80,10 +83,23 @@ export default function HeroBanner() {
             <div className="container banner-container">
               <div className="banner-content-wrapper">
                 <div className="banner-content-bottom">
-                  <div data-w-id="3c7cafd2-ce17-ad7f-9079-2f9d19276a30" style={{ transform: 'translate3d(-30px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', opacity: 0, filter: 'blur(5px)' }} className="banner-details-wrap">
+                  {/* Instant Entrance for Bottom Details Text */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                    className="banner-details-wrap"
+                  >
                     <p className="banner-details">At Cueserve, we blend creativity with strategy to build digital experiences that move brands forward. From crafting standout websites.</p>
-                  </div>
-                  <div data-w-id="501f0b19-4ed6-6324-bf7b-ba48bf2901f7" style={{ transform: 'translate3d(30px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', opacity: 0, filter: 'blur(5px)' }} className="banner-button-wrap">
+                  </motion.div>
+
+                  {/* Instant Entrance for Get Started Button */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                    className="banner-button-wrap"
+                  >
                     <Link data-wf--primary-button--variant="alice-blue" href="/contact-us" className="primary-button w-variant-3b35c6e6-bf39-22a4-81e5-2d58550c88a7 w-inline-block">
                       <div className="primary-button-flex">
                         <div className="primary-button-text-wrap">
@@ -99,7 +115,7 @@ export default function HeroBanner() {
                       </div>
                       <div className="primary-button-hover-bg"></div>
                     </Link>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
               <div className="banner-borders-wrapper">

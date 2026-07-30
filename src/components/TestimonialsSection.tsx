@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 interface Testimonial {
   id: number;
@@ -53,22 +54,51 @@ const testimonialsData: Testimonial[] = [
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [direction, setDirection] = useState<number>(1);
 
   const handlePrev = () => {
+    setDirection(-1);
     setCurrentIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev === testimonialsData.length - 1 ? 0 : prev + 1));
   };
 
   const current = testimonialsData[currentIndex];
 
+  const variants: Variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 50 : -50,
+      opacity: 0,
+      filter: "blur(4px)"
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 50 : -50,
+      opacity: 0,
+      filter: "blur(4px)",
+      transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1.0] }
+    })
+  };
+
   return (
     <section className="section testimonials position-relative overflow-hidden">
       <div className="container">
         {/* Section Header Title */}
-        <div className="section-title-wrapper margin-bottom">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="section-title-wrapper margin-bottom"
+        >
           <div className="section-subtile-wrap">
             <div data-wf--subtitle--variant="borders" className="subtitle-wrap w-variant-89dd2e21-7faa-27ca-a536-110057684450">
               <div className="subtitle-flex-wrap">
@@ -86,56 +116,68 @@ export default function TestimonialsSection() {
             Our success is measured by the satisfaction of our clients. We{" "}
             <span className="testimonial-title-mark">take pride in building long partnerships.</span>
           </h3>
-        </div>
+        </motion.div>
 
         {/* Main Testimonial Card Slider */}
-        <div className="testimonial-slider-container position-relative mb-16">
-          <div className="single-testimonial-wrap rounded-3xl p-8 md:p-12 transition-all duration-500 bg-white border border-gray-100 shadow-xl">
-            <div className="testimonial-flex-wrap flex flex-col md:flex-row items-center gap-8">
-              {/* Author Image */}
-              <div className="testimonial-image-wrap shrink-0 rounded-2xl overflow-hidden shadow-lg" style={{ maxWidth: "420px", width: "100%" }}>
-                <img
-                  src={current.avatar}
-                  alt={current.name}
-                  className="testimonial-image w-full h-80 object-cover"
-                />
-              </div>
+        <div className="testimonial-slider-container position-relative mb-16 min-h-[340px]">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="single-testimonial-wrap rounded-3xl p-8 md:p-12 bg-white border border-gray-100 shadow-xl"
+            >
+              <div className="testimonial-flex-wrap flex flex-col md:flex-row items-center gap-8">
+                {/* Author Image */}
+                <div className="testimonial-image-wrap shrink-0 rounded-2xl overflow-hidden shadow-lg" style={{ maxWidth: "420px", width: "100%" }}>
+                  <img
+                    src={current.avatar}
+                    alt={current.name}
+                    className="testimonial-image w-full h-80 object-cover"
+                  />
+                </div>
 
-              {/* Content Wrap */}
-              <div className="testimonial-content-wrapper flex-1">
-                <div className="testimonial-content-inner">
-                  <div className="testimonial-content-top-wrap flex justify-between items-center mb-6">
-                    <div className="testimonial-author-info-wrap flex items-center gap-4">
-                      <img src={current.logo} alt="Client Logo" className="testimonial-logo h-8" />
-                      <div>
-                        <div className="testimonial-author-name text-lg font-bold text-gray-900">{current.name}</div>
-                        <div className="text-sm text-gray-500 font-medium">{current.role}</div>
+                {/* Content Wrap */}
+                <div className="testimonial-content-wrapper flex-1">
+                  <div className="testimonial-content-inner">
+                    <div className="testimonial-content-top-wrap flex justify-between items-center mb-6">
+                      <div className="testimonial-author-info-wrap flex items-center gap-4">
+                        <img src={current.logo} alt="Client Logo" className="testimonial-logo h-8" />
+                        <div>
+                          <div className="testimonial-author-name text-lg font-bold text-gray-900">{current.name}</div>
+                          <div className="text-sm text-gray-500 font-medium">{current.role}</div>
+                        </div>
+                      </div>
+                      <div className="testimonial-quote-wrap">
+                        <img
+                          src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg"
+                          alt="Quote Icon"
+                          className="testimonial-quote w-10 opacity-70"
+                        />
                       </div>
                     </div>
-                    <div className="testimonial-quote-wrap">
-                      <img
-                        src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg"
-                        alt="Quote Icon"
-                        className="testimonial-quote w-10 opacity-70"
-                      />
+
+                    <div className="testimonial-content-divider h-px bg-gray-100 mb-6"></div>
+
+                    <div className="testimonial-details-wrap">
+                      <p className="testimonial-details text-gray-700 text-lg leading-relaxed italic">
+                        "{current.quote}"
+                      </p>
                     </div>
-                  </div>
-
-                  <div className="testimonial-content-divider h-px bg-gray-100 mb-6"></div>
-
-                  <div className="testimonial-details-wrap">
-                    <p className="testimonial-details text-gray-700 text-lg leading-relaxed italic">
-                      "{current.quote}"
-                    </p>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
 
           {/* Navigation Controls */}
           <div className="slider-controls-wrap flex items-center justify-end gap-3 mt-6">
-            <button
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
               type="button"
               onClick={handlePrev}
               aria-label="Previous Testimonial"
@@ -144,11 +186,13 @@ export default function TestimonialsSection() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
-            </button>
+            </motion.button>
             <span className="text-sm font-semibold text-gray-500 px-2">
               0{currentIndex + 1} / 0{testimonialsData.length}
             </span>
-            <button
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
               type="button"
               onClick={handleNext}
               aria-label="Next Testimonial"
@@ -157,12 +201,18 @@ export default function TestimonialsSection() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
+            </motion.button>
           </div>
         </div>
 
         {/* Testimonials Stats Counters */}
-        <div className="testimonials-stats-wrapper py-8 border-t border-b border-gray-100">
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="testimonials-stats-wrapper py-8 border-t border-b border-gray-100"
+        >
           <div className="testimonials-stats-flex grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="single-testimonial-stat-wrap">
               <div className="testimonial-counter-wrap flex justify-center items-baseline gap-1 text-4xl font-extrabold text-gray-900 mb-2">
@@ -188,7 +238,7 @@ export default function TestimonialsSection() {
               <div className="testimonial-stat-text text-sm font-medium text-gray-600">Average Growth Achieved</div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

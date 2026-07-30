@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ValueItem {
   id: string;
@@ -52,7 +53,13 @@ export default function ValuesSection() {
         <div className="mission-vh-wrap" style={{ height: "auto" }}>
           <div className="mission-sticky-wrap" style={{ position: "relative", top: 0 }}>
             {/* Header Title Row */}
-            <div className="section-title-wrapper flex mission mb-8">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="section-title-wrapper flex mission mb-8"
+            >
               <div className="section-title-left-wrap mission">
                 <div className="section-subtile-wrap">
                   <div data-wf--subtitle--variant="borders" className="subtitle-wrap w-variant-89dd2e21-7faa-27ca-a536-110057684450">
@@ -102,22 +109,26 @@ export default function ValuesSection() {
                   <div className="primary-button-hover-bg"></div>
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Interactive Grid & Tabs */}
+            {/* Interactive Grid & Animated Tabs */}
             <div className="mission-flex-wrap gap-6">
-              {valuesData.map((item) => {
+              {valuesData.map((item, index) => {
                 const isActive = activeTab === item.id;
                 return (
-                  <div
+                  <motion.div
                     key={item.id}
-                    className={`single-mission-wrapper ${item.num} flex-1 cursor-pointer transition-all duration-300`}
+                    initial={{ y: 30, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+                    className={`single-mission-wrapper ${item.num} flex-1 cursor-pointer`}
                     onClick={() => setActiveTab(item.id)}
                   >
                     {/* Top Tab Pill Header */}
                     <div className={`mission-counter-wrap ${item.num}`}>
                       <div
-                        className={`mission-name-wrap transition-all duration-300 ${
+                        className={`mission-name-wrap relative transition-all duration-300 ${
                           isActive ? "active-pill" : ""
                         }`}
                         style={{
@@ -125,7 +136,7 @@ export default function ValuesSection() {
                             ? "linear-gradient(135deg, #2d8cff 0%, #0056b3 100%)"
                             : "var(--alice-blue, #edf3ff)",
                           color: isActive ? "#ffffff" : "#0e1422",
-                          boxShadow: isActive ? "0 4px 14px rgba(45, 140, 255, 0.3)" : "none",
+                          boxShadow: isActive ? "0 6px 18px rgba(45, 140, 255, 0.35)" : "none",
                         }}
                       >
                         <div
@@ -139,7 +150,9 @@ export default function ValuesSection() {
                     </div>
 
                     {/* Mission Card Wrap */}
-                    <div
+                    <motion.div
+                      whileHover={{ y: -4 }}
+                      transition={{ duration: 0.2 }}
                       className={`mission-card-wrap transition-all duration-300 ${
                         isActive ? "ring-2 ring-blue-500 shadow-xl" : "hover:shadow-md"
                       }`}
@@ -171,8 +184,8 @@ export default function ValuesSection() {
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                 );
               })}
             </div>

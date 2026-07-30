@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface AboutSectionProps {
   isAboutPage?: boolean;
@@ -10,8 +13,15 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
       <div className="container">
         <div className={`about-us-title-wrapper ${isAboutPage ? "mb-0" : ""}`}>
           <div className="about-us-title-flex">
-            <div className="about-flex-left">
-              <div data-w-id="497c147f-e0be-3b6c-03c7-3bee10cc43c6" className="about-us-stat-wrappper">
+            {/* Left Column Animation */}
+            <motion.div
+              initial={{ x: -30, opacity: 0, filter: "blur(5px)" }}
+              whileInView={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="about-flex-left"
+            >
+              <div className="about-us-stat-wrappper">
                 <div className="about-us-subtitle-wrap">
                   <div data-wf--subtitle--variant="borders" className="subtitle-wrap w-variant-89dd2e21-7faa-27ca-a536-110057684450">
                     <div className="subtitle-flex-wrap">
@@ -20,7 +30,7 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
                     </div>
                   </div>
                 </div>
-                <div data-w-id="497c147f-e0be-3b6c-03c7-3bee10cc43ca" className="about-award-count-wrap">
+                <div className="about-award-count-wrap">
                   <div className="about-award-count-number">40+</div>
                   <div className="award-count-arrow-wrap one">
                     <div className="award-count-arrow-text">Worldwide</div>
@@ -34,7 +44,13 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
               </div>
 
               {isAboutPage && (
-                <div className="mission-vision-wrap">
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  className="mission-vision-wrap"
+                >
                   <div className="our-mission-wrap">
                     <h2 className="our-mission-title">Our Mission</h2>
                     <p className="our-mission-details">
@@ -47,14 +63,21 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
                       Our vision is to create meaningful digital experiences that combine creativity, clarity, and purpose.
                     </p>
                   </div>
-                </div>
+                </motion.div>
               )}
-            </div>
+            </motion.div>
 
+            {/* Right Column Animation */}
             <div className="about-us-title-flex-right">
               <div className="about-us-title-border"></div>
               <div className="about-right-contents">
-                <div data-w-id="497c147f-e0be-3b6c-03c7-3bee10cc43d7" className="about-us-title-wrap">
+                <motion.div
+                  initial={{ x: 30, opacity: 0, filter: "blur(5px)" }}
+                  whileInView={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="about-us-title-wrap"
+                >
                   <h3 className="about-us-title">
                     Our team of designers, developers, and thinkers driven by <span className="about-us-title-mark">one purpose — to craft digital experiences.</span>
                   </h3>
@@ -78,17 +101,23 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
                       <div className="primary-button-hover-bg"></div>
                     </Link>
                   )}
-                </div>
+                </motion.div>
 
                 {isAboutPage && (
-                  <div className="about-us-image-wrap">
+                  <motion.div
+                    initial={{ scale: 1.08, opacity: 0, filter: "blur(4px)" }}
+                    whileInView={{ scale: 1.0, opacity: 1, filter: "blur(0px)" }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+                    className="about-us-image-wrap"
+                  >
                     <img
                       src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6942f0e8d0fe21fb280fe263_About-Us-Image.jpg"
                       loading="lazy"
                       alt="About Image"
                       className="about-us-image"
                     />
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </div>
@@ -100,15 +129,15 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
         <>
           <div className="about-us-section-title-divider"></div>
           <div className="container">
-            <div data-w-id="497c147f-e0be-3b6c-03c7-3bee10cc43e2" className="about-vh-wrap">
+            <div className="about-vh-wrap">
               <div className="about-stat-wrapper">
                 <div className="about-stat-flex">
                   <div className="about-stat-image-wrap">
-                    <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691f399a64049d0423783289_About-Stat-Image.jpg" loading="lazy" data-w-id="497c147f-e0be-3b6c-03c7-3bee10cc43e6" alt="Stat Image" className="about-stat-image"/>
+                    <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691f399a64049d0423783289_About-Stat-Image.jpg" loading="lazy" alt="Stat Image" className="about-stat-image"/>
                   </div>
                   <div className="about-stats-counters-flex">
                     <div className="single-testimonial-stat-wrap about-us">
-                      <div data-w-id="497c147f-e0be-3b6c-03c7-3bee10cc43e9" className="testimonial-counter-wrap about-us">
+                      <div className="testimonial-counter-wrap about-us">
                         <div className="counter-number-row _1">
                           <h2 className="single-number about-us">9</h2>
                           <h2 className="single-number about-us">9</h2>
@@ -118,7 +147,7 @@ export default function AboutSection({ isAboutPage = false }: AboutSectionProps)
                       <div className="testimonial-stat-text">Clients Satisfied and Repeating</div>
                     </div>
                     <div className="single-testimonial-stat-wrap about-us">
-                      <div data-w-id="497c147f-e0be-3b6c-03c7-3bee10cc441d" className="testimonial-counter-wrap about-us">
+                      <div className="testimonial-counter-wrap about-us">
                         <div className="counter-number-row _1">
                           <h2 className="single-number about-us">1</h2>
                           <h2 className="single-number about-us">5</h2>

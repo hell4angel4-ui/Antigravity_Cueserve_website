@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function AboutHeroBanner() {
   const tickerItems = [
     {
@@ -16,20 +20,40 @@ export default function AboutHeroBanner() {
       <div className="container navbar-container">
         <div className="feature-banner-content-wrap">
           <div className="feature-banner-content-flex">
-            <div className="feature-banner-content-left">
+            {/* Left Title Fade & Slide */}
+            <motion.div
+              initial={{ x: -30, opacity: 0, filter: "blur(5px)" }}
+              animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="feature-banner-content-left"
+            >
               <h1 className="inner-banner-title mb-0">
                 Crafting The Future Of Digital <span className="inner-banner-title-mark">Brands.</span>
               </h1>
-            </div>
-            <div className="feature-banner-content-right">
+            </motion.div>
+
+            {/* Right Sub-description Fade & Slide */}
+            <motion.div
+              initial={{ x: 30, opacity: 0, filter: "blur(5px)" }}
+              animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="feature-banner-content-right"
+            >
               <p className="inner-banner-details">
                 At Cueserve, we believe that great design goes beyond visuals — it’s about creating meaningful digital experiences that connect people and brands.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
-      <div className="service-banner-ticker-wrap">
+
+      {/* Infinite Ticker Marquee */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="service-banner-ticker-wrap"
+      >
         <div className="service-banner-ticker-flex">
           {[1, 2, 3].map((index) => (
             <div key={index} className="service-banner-ticker-item">
@@ -43,7 +67,7 @@ export default function AboutHeroBanner() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

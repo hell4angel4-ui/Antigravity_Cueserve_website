@@ -1,4 +1,6 @@
-import Link from "next/link";
+"use client";
+
+import { motion } from "framer-motion";
 
 interface Member {
   id: string;
@@ -75,7 +77,14 @@ export default function TeamMembersSection() {
   return (
     <section className="section members">
       <div className="container">
-        <div className="section-title-wrapper margin-bottom">
+        {/* Section Title Reveal */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="section-title-wrapper margin-bottom"
+        >
           <div className="section-subtile-wrap">
             <div data-wf--subtitle--variant="borders" className="subtitle-wrap w-variant-89dd2e21-7faa-27ca-a536-110057684450">
               <div className="subtitle-flex-wrap">
@@ -92,18 +101,28 @@ export default function TeamMembersSection() {
           <h2 className="section-title">
             Our Talented Team <span className="section-title-mark">Members.</span>
           </h2>
-        </div>
+        </motion.div>
+
+        {/* Member Grid with Staggered Entrance */}
         <div className="members-wrapper">
           <div className="member-grid-wrap">
-            {teamMembers.map((member) => (
-              <div key={member.id} className="single-member-wrap">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ y: 30, opacity: 0, filter: "blur(5px)" }}
+                whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: (index % 4) * 0.12, ease: "easeOut" }}
+                whileHover={{ y: -6 }}
+                className="single-member-wrap"
+              >
                 <div className="member-contents-wrap">
-                  <div className="member-image-wrap">
+                  <div className="member-image-wrap overflow-hidden">
                     <img
                       src={member.image}
                       loading="lazy"
                       alt={member.name}
-                      className="member-image"
+                      className="member-image transition-transform duration-500 hover:scale-105"
                     />
                   </div>
                   <div className="member-details-wrapper">
@@ -138,7 +157,7 @@ export default function TeamMembersSection() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

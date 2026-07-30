@@ -28,13 +28,13 @@ export default function FaqSection() {
                 </div>
                 <div className="faq-bottom-wrap">
                   <div className="faq-question-wrap _01">
-                    <div className="faq-question">What services does Arooth offer?</div>
+                    <div className="faq-question">What services does Cueserve offer?</div>
                   </div>
                   <div className="faq-ans-wrap _01">
                     <div className="faq-ans-content">
                       <h4 className="faq-ans-title">Question Answer:</h4>
                       <div className="faq-ans-divider"></div>
-                      <p className="faq-details">Arooth provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
+                      <p className="faq-details">Cueserve provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
                       <div className="faq-button-wrap">
                         <Link data-wf--primary-button--variant="white" href="/about-us" className="primary-button w-inline-block">
                           <div className="primary-button-flex">
@@ -75,7 +75,7 @@ export default function FaqSection() {
                     <div className="faq-ans-content">
                       <h4 className="faq-ans-title">Question Answer:</h4>
                       <div className="faq-ans-divider"></div>
-                      <p className="faq-details">Arooth provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
+                      <p className="faq-details">Cueserve provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
                       <div className="faq-button-wrap">
                         <Link data-wf--primary-button--variant="white" href="/about-us" className="primary-button w-inline-block">
                           <div className="primary-button-flex">
@@ -116,7 +116,7 @@ export default function FaqSection() {
                     <div className="faq-ans-content">
                       <h4 className="faq-ans-title">Question Answer:</h4>
                       <div className="faq-ans-divider"></div>
-                      <p className="faq-details">Arooth provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
+                      <p className="faq-details">Cueserve provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
                       <div className="faq-button-wrap">
                         <Link data-wf--primary-button--variant="white" href="/about-us" className="primary-button w-inline-block">
                           <div className="primary-button-flex">
@@ -151,13 +151,13 @@ export default function FaqSection() {
                 </div>
                 <div className="faq-bottom-wrap">
                   <div className="faq-question-wrap _04">
-                    <div className="faq-question">How can we get started with Arooth?</div>
+                    <div className="faq-question">How can we get started with Cueserve?</div>
                   </div>
                   <div className="faq-ans-wrap _04">
                     <div className="faq-ans-content">
                       <h4 className="faq-ans-title">Question Answer:</h4>
                       <div className="faq-ans-divider"></div>
-                      <p className="faq-details">Arooth provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
+                      <p className="faq-details">Cueserve provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
                       <div className="faq-button-wrap">
                         <Link data-wf--primary-button--variant="white" href="/about-us" className="primary-button w-inline-block">
                           <div className="primary-button-flex">
@@ -198,7 +198,7 @@ export default function FaqSection() {
                     <div className="faq-ans-content">
                       <h4 className="faq-ans-title">Question Answer:</h4>
                       <div className="faq-ans-divider"></div>
-                      <p className="faq-details">Arooth provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
+                      <p className="faq-details">Cueserve provides end-to-end digital solutions, including web design, development, branding, digital marketing, UI/UX strategy, and SEO optimization — all tailored to help your business grow online.</p>
                       <div className="faq-button-wrap">
                         <Link data-wf--primary-button--variant="white" href="/about-us" className="primary-button w-inline-block">
                           <div className="primary-button-flex">

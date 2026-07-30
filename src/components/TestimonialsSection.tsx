@@ -70,28 +70,23 @@ export default function TestimonialsSection() {
 
   const slideVariants: Variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 50 : -50,
-      opacity: 0,
-      filter: "blur(4px)"
+      x: direction > 0 ? 40 : -40,
+      opacity: 0
     }),
     center: {
       x: 0,
       opacity: 1,
-      filter: "blur(0px)",
       transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? 50 : -50,
+      x: direction < 0 ? 40 : -40,
       opacity: 0,
-      filter: "blur(4px)",
       transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1.0] }
     })
   };
 
-  const numbersList = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
   return (
-    <section className="section testimonials position-relative overflow-hidden">
+    <section className="section testimonials">
       <div className="container">
         {/* Section Header Title */}
         <motion.div
@@ -121,7 +116,7 @@ export default function TestimonialsSection() {
         </motion.div>
 
         {/* Main Testimonial Card Slider */}
-        <div className="testimonial-slider-container position-relative mb-16 min-h-[340px]">
+        <div className="testimonials-wrapper" style={{ marginBottom: '3rem' }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -130,42 +125,42 @@ export default function TestimonialsSection() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="single-testimonial-wrap rounded-3xl p-8 md:p-12 bg-white border border-gray-100 shadow-xl"
+              className="single-testimonial-wrap"
             >
-              <div className="testimonial-flex-wrap flex flex-col md:flex-row items-center gap-8">
+              <div className="testimonial-flex-wrap">
                 {/* Author Image */}
-                <div className="testimonial-image-wrap shrink-0 rounded-2xl overflow-hidden shadow-lg" style={{ maxWidth: "420px", width: "100%" }}>
+                <div className="testimonial-image-wrap">
                   <img
                     src={current.avatar}
                     alt={current.name}
-                    className="testimonial-image w-full h-80 object-cover"
+                    className="testimonial-image"
                   />
                 </div>
 
                 {/* Content Wrap */}
-                <div className="testimonial-content-wrapper flex-1">
+                <div className="testimonial-content-wrapper">
                   <div className="testimonial-content-inner">
-                    <div className="testimonial-content-top-wrap flex justify-between items-center mb-6">
-                      <div className="testimonial-author-info-wrap flex items-center gap-4">
-                        <img src={current.logo} alt="Client Logo" className="testimonial-logo h-8" />
+                    <div className="testimonial-content-top-wrap">
+                      <div className="testimonial-author-info-wrap">
+                        <img src={current.logo} alt="Client Logo" className="testimonial-logo" />
                         <div>
-                          <div className="testimonial-author-name text-lg font-bold text-gray-900">{current.name}</div>
-                          <div className="text-sm text-gray-500 font-medium">{current.role}</div>
+                          <div className="testimonial-author-name">{current.name}</div>
+                          <div className="testimonial-author-role">{current.role}</div>
                         </div>
                       </div>
                       <div className="testimonial-quote-wrap">
                         <img
                           src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg"
                           alt="Quote Icon"
-                          className="testimonial-quote w-10 opacity-70"
+                          className="testimonial-quote"
                         />
                       </div>
                     </div>
 
-                    <div className="testimonial-content-divider h-px bg-gray-100 mb-6"></div>
+                    <div className="testimonial-content-divider"></div>
 
                     <div className="testimonial-details-wrap">
-                      <p className="testimonial-details text-gray-700 text-lg leading-relaxed italic">
+                      <p className="testimonial-details">
                         "{current.quote}"
                       </p>
                     </div>
@@ -176,142 +171,84 @@ export default function TestimonialsSection() {
           </AnimatePresence>
 
           {/* Navigation Controls */}
-          <div className="slider-controls-wrap flex items-center justify-end gap-3 mt-6">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
+          <div className="slider-controls-wrap flex items-center justify-start gap-3 mt-6" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '1.5rem' }}>
+            <button
               type="button"
               onClick={handlePrev}
               aria-label="Previous Testimonial"
-              className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm cursor-pointer"
+              style={{
+                width: '3rem',
+                height: '3rem',
+                borderRadius: '50%',
+                border: '1px solid #e2e8f0',
+                background: '#ffffff',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
-            </motion.button>
-            <span className="text-sm font-semibold text-gray-500 px-2">
+            </button>
+            <span style={{ fontSize: '0.875rem', fontWeight: 600, color: '#64748b' }}>
               0{currentIndex + 1} / 0{testimonialsData.length}
             </span>
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
+            <button
               type="button"
               onClick={handleNext}
               aria-label="Next Testimonial"
-              className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm cursor-pointer"
+              style={{
+                width: '3rem',
+                height: '3rem',
+                borderRadius: '50%',
+                border: '1px solid #e2e8f0',
+                background: '#ffffff',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </motion.button>
+            </button>
           </div>
         </div>
 
-        {/* Testimonials Rolling Slot-Machine Stats Counters */}
-        <div className="testimonials-stats-wrapper py-8 border-t border-b border-gray-100">
-          <div className="testimonials-stats-flex grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        {/* Clean Webflow Stats Counters Row */}
+        <div className="testimonials-stats-wrapper" style={{ paddingTop: '2.5rem', borderTop: '1px solid #edf2f7' }}>
+          <div className="testimonials-stats-flex" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem', textAlign: 'center' }}>
             {/* Stat 1: 99% */}
             <div className="single-testimonial-stat-wrap">
-              <div className="testimonial-counter-wrap flex justify-center items-center overflow-hidden h-14 text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
-                {/* Digit 1: 9 */}
-                <div className="overflow-hidden h-14">
-                  <motion.div
-                    initial={{ y: "0%" }}
-                    whileInView={{ y: "-90%" }}
-                    viewport={{ once: true, margin: "-20px" }}
-                    transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1.0] }}
-                    className="flex flex-col"
-                  >
-                    {numbersList.map((n) => (
-                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
-                    ))}
-                  </motion.div>
-                </div>
-                {/* Digit 2: 9 */}
-                <div className="overflow-hidden h-14">
-                  <motion.div
-                    initial={{ y: "0%" }}
-                    whileInView={{ y: "-90%" }}
-                    viewport={{ once: true, margin: "-20px" }}
-                    transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-                    className="flex flex-col"
-                  >
-                    {numbersList.map((n) => (
-                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
-                    ))}
-                  </motion.div>
-                </div>
-                <span className="text-blue-600 ml-1">%</span>
+              <div className="testimonial-counter-wrap" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <h2 className="single-number" style={{ fontSize: '3rem', fontWeight: 800, color: '#0e1422', margin: 0, lineHeight: 1 }}>99%</h2>
               </div>
-              <div className="testimonial-stat-text text-sm font-medium text-gray-600">Client Satisfaction Rate</div>
+              <div className="testimonial-stat-text" style={{ fontSize: '0.875rem', fontWeight: 500, color: '#525b68', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                CLIENT SATISFACTION RATE
+              </div>
             </div>
 
             {/* Stat 2: 150+ */}
             <div className="single-testimonial-stat-wrap">
-              <div className="testimonial-counter-wrap flex justify-center items-center overflow-hidden h-14 text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
-                <div className="overflow-hidden h-14">
-                  <motion.div
-                    initial={{ y: "0%" }}
-                    whileInView={{ y: "-10%" }}
-                    viewport={{ once: true, margin: "-20px" }}
-                    transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1.0] }}
-                    className="flex flex-col"
-                  >
-                    {numbersList.map((n) => (
-                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
-                    ))}
-                  </motion.div>
-                </div>
-                <div className="overflow-hidden h-14">
-                  <motion.div
-                    initial={{ y: "0%" }}
-                    whileInView={{ y: "-50%" }}
-                    viewport={{ once: true, margin: "-20px" }}
-                    transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1.0] }}
-                    className="flex flex-col"
-                  >
-                    {numbersList.map((n) => (
-                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
-                    ))}
-                  </motion.div>
-                </div>
-                <div className="overflow-hidden h-14">
-                  <motion.div
-                    initial={{ y: "0%" }}
-                    whileInView={{ y: "0%" }}
-                    viewport={{ once: true, margin: "-20px" }}
-                    transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-                    className="flex flex-col"
-                  >
-                    {numbersList.map((n) => (
-                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
-                    ))}
-                  </motion.div>
-                </div>
-                <span className="text-blue-600 ml-1">+</span>
+              <div className="testimonial-counter-wrap" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <h2 className="single-number" style={{ fontSize: '3rem', fontWeight: 800, color: '#0e1422', margin: 0, lineHeight: 1 }}>150+</h2>
               </div>
-              <div className="testimonial-stat-text text-sm font-medium text-gray-600">Global Brands Served Worldwide</div>
+              <div className="testimonial-stat-text" style={{ fontSize: '0.875rem', fontWeight: 500, color: '#525b68', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                GLOBAL BRANDS SERVED WORLDWIDE
+              </div>
             </div>
 
             {/* Stat 3: 5X */}
             <div className="single-testimonial-stat-wrap">
-              <div className="testimonial-counter-wrap flex justify-center items-center overflow-hidden h-14 text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
-                <div className="overflow-hidden h-14">
-                  <motion.div
-                    initial={{ y: "0%" }}
-                    whileInView={{ y: "-50%" }}
-                    viewport={{ once: true, margin: "-20px" }}
-                    transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1.0] }}
-                    className="flex flex-col"
-                  >
-                    {numbersList.map((n) => (
-                      <span key={n} className="h-14 flex items-center justify-center">{n}</span>
-                    ))}
-                  </motion.div>
-                </div>
-                <span className="text-blue-600 ml-1">X</span>
+              <div className="testimonial-counter-wrap" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <h2 className="single-number" style={{ fontSize: '3rem', fontWeight: 800, color: '#0e1422', margin: 0, lineHeight: 1 }}>5X</h2>
               </div>
-              <div className="testimonial-stat-text text-sm font-medium text-gray-600">Average Growth Achieved</div>
+              <div className="testimonial-stat-text" style={{ fontSize: '0.875rem', fontWeight: 500, color: '#525b68', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                AVERAGE GROWTH ACHIEVED
+              </div>
             </div>
           </div>
         </div>

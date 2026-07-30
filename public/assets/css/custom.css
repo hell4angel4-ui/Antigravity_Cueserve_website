@@ -24,6 +24,21 @@
   }
 }
 
+/* Nav Links Dynamic Active Pill Styling */
+.single-nav-link {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.single-nav-link.w--current {
+  background-color: var(--alice-blue, #eff4ff) !important;
+  color: var(--primary, #2d8cff) !important;
+  font-weight: 500;
+}
+
+.single-nav-link:hover:not(.w--current) {
+  color: var(--primary, #2d8cff);
+}
+
 /* Service Banner Ticker Infinite Marquee */
 .service-banner-ticker-wrap {
   overflow: hidden;

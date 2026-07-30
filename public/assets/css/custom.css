@@ -87,3 +87,23 @@
   background: var(--cueserve-blue, #2d8cff);
   transform: translateY(-2px);
 }
+
+/* Values Section Enhancements */
+.mission-name-wrap {
+  border-radius: 30px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mission-card-wrap {
+  transition: all 0.3s ease;
+}
+
+.mission-card-wrap:hover {
+  transform: translateY(-3px);
+}
+
+/* Testimonial Section Adjustments */
+.single-testimonial-wrap {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}

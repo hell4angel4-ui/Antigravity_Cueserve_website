@@ -1,39 +1,58 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
-const valuesData = [
+interface ValueItem {
+  id: string;
+  num: string;
+  label: string;
+  icon: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
+const valuesData: ValueItem[] = [
   {
+    id: "mission",
     num: "_01",
     label: "Mission",
     icon: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6921cb589d47768656dc4903_Mission-Icon-1.svg",
     title: "Focused On Impact",
-    description: "Our mission is creating experiences that inspire and deliver tangible results for every brand.",
+    description: "Our mission is creating experiences that inspire, deliver results, and change how individuals interact with your brand.",
     image: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6921cc716d7304d3ca57aea9_Mission-Image-1.jpg"
   },
   {
+    id: "vision",
     num: "_02",
     label: "Vision",
     icon: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6921cb58248258afdc90491e_Mission-Icon-2.svg",
     title: "Digital Innovation",
-    description: "Our vision is to shape the future of digital innovation with cutting-edge design and engineering.",
+    description: "Our vision is to shape the future of digital innovation through meaningful design, strategic clarity, and technical mastery.",
     image: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6921cc716d7304d3ca57aea9_Mission-Image-1.jpg"
   },
   {
+    id: "goals",
     num: "_03",
     label: "Goals",
     icon: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6921cb58c89775bca22ccba5_Mission-Icon-3.svg",
     title: "Inspire Growth",
-    description: "Our goal is to continuously push boundaries and empower ambitious businesses worldwide.",
+    description: "Our goal is to continuously push boundaries & help ambitious businesses unlock sustainable growth in global markets.",
     image: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6921cc716d7304d3ca57aea9_Mission-Image-1.jpg"
   }
 ];
 
 export default function ValuesSection() {
+  const [activeTab, setActiveTab] = useState<string>("mission");
+
   return (
-    <section className="section">
+    <section className="section values-section-container">
       <div className="container">
-        <div className="mission-vh-wrap">
-          <div className="mission-sticky-wrap">
-            <div className="section-title-wrapper flex mission">
+        <div className="mission-vh-wrap" style={{ height: "auto" }}>
+          <div className="mission-sticky-wrap" style={{ position: "relative", top: 0 }}>
+            {/* Header Title Row */}
+            <div className="section-title-wrapper flex mission mb-8">
               <div className="section-title-left-wrap mission">
                 <div className="section-subtile-wrap">
                   <div data-wf--subtitle--variant="borders" className="subtitle-wrap w-variant-89dd2e21-7faa-27ca-a536-110057684450">
@@ -84,34 +103,78 @@ export default function ValuesSection() {
                 </Link>
               </div>
             </div>
-            <div className="mission-flex-wrap">
-              {valuesData.map((item) => (
-                <div key={item.num} className={`single-mission-wrapper ${item.num}`}>
-                  <div className={`mission-counter-wrap ${item.num}`}>
-                    <div className="mission-name-wrap">
-                      <div className={`mission-name ${item.num}`}>{item.label}</div>
-                      <div className={`mission-name-hover-bg ${item.num}`}></div>
-                    </div>
-                    <div className="mission-border"></div>
-                  </div>
-                  <div className="mission-card-wrap">
-                    <div className="mission-card-content-wrap">
-                      <div className="mission-icon-wrap">
-                        <img src={item.icon} loading="lazy" alt={`${item.label} Icon`} className="mission-icon" />
-                      </div>
-                      <div className="mission-contents-flex">
-                        <div className="mission-details-wrap">
-                          <h3 className="mission-title">{item.title}</h3>
-                          <p className="mission-details">{item.description}</p>
+
+            {/* Interactive Grid & Tabs */}
+            <div className="mission-flex-wrap gap-6">
+              {valuesData.map((item) => {
+                const isActive = activeTab === item.id;
+                return (
+                  <div
+                    key={item.id}
+                    className={`single-mission-wrapper ${item.num} flex-1 cursor-pointer transition-all duration-300`}
+                    onClick={() => setActiveTab(item.id)}
+                  >
+                    {/* Top Tab Pill Header */}
+                    <div className={`mission-counter-wrap ${item.num}`}>
+                      <div
+                        className={`mission-name-wrap transition-all duration-300 ${
+                          isActive ? "active-pill" : ""
+                        }`}
+                        style={{
+                          background: isActive
+                            ? "linear-gradient(135deg, #2d8cff 0%, #0056b3 100%)"
+                            : "var(--alice-blue, #edf3ff)",
+                          color: isActive ? "#ffffff" : "#0e1422",
+                          boxShadow: isActive ? "0 4px 14px rgba(45, 140, 255, 0.3)" : "none",
+                        }}
+                      >
+                        <div
+                          className={`mission-name ${item.num}`}
+                          style={{ color: isActive ? "#ffffff" : "#0e1422", fontWeight: 600 }}
+                        >
+                          {item.label}
                         </div>
-                        <div className={`mission-image-wrap ${item.num}`}>
-                          <img src={item.image} loading="lazy" alt={`${item.label} Image`} className="mission-image" />
+                      </div>
+                      <div className="mission-border"></div>
+                    </div>
+
+                    {/* Mission Card Wrap */}
+                    <div
+                      className={`mission-card-wrap transition-all duration-300 ${
+                        isActive ? "ring-2 ring-blue-500 shadow-xl" : "hover:shadow-md"
+                      }`}
+                      style={{
+                        background: isActive ? "#ffffff" : "var(--alice-blue, #f4f7ff)",
+                        border: isActive ? "1px solid #d0e1ff" : "1px solid transparent",
+                        padding: "2rem",
+                        borderRadius: "20px"
+                      }}
+                    >
+                      <div className="mission-card-content-wrap">
+                        {/* Circle Icon */}
+                        <div className="mission-icon-wrap mb-6" style={{ width: "4.5rem", height: "4.5rem" }}>
+                          <img src={item.icon} loading="lazy" alt={`${item.label} Icon`} className="mission-icon" style={{ width: "2.25rem", height: "2.25rem" }} />
+                        </div>
+
+                        {/* Contents Flex */}
+                        <div className="mission-contents-flex flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                          <div className="mission-details-wrap max-w-full">
+                            <h3 className="mission-title text-xl font-semibold mb-2" style={{ color: "#0e1422" }}>
+                              {item.title}
+                            </h3>
+                            <p className="mission-details text-sm leading-relaxed" style={{ color: "#505b70" }}>
+                              {item.description}
+                            </p>
+                          </div>
+                          <div className="mission-image-wrap shrink-0 rounded-xl overflow-hidden" style={{ width: "90px", height: "90px" }}>
+                            <img src={item.image} loading="lazy" alt={`${item.label} Image`} className="mission-image w-full h-full object-cover" />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

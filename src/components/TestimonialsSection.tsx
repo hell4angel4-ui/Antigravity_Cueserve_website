@@ -1,192 +1,194 @@
-import Link from 'next/link';
+"use client";
+
+import { useState } from "react";
+
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  company: string;
+  avatar: string;
+  logo: string;
+  quote: string;
+}
+
+const testimonialsData: Testimonial[] = [
+  {
+    id: 1,
+    name: "Emma Johnson",
+    role: "CEO at TechNova",
+    company: "TechNova Inc",
+    avatar: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaedad24e443801fc6e0_Testimonial-Image-1.jpg",
+    logo: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg",
+    quote: "Working with Cueserve was a seamless experience from start to finish. Their team truly understood our vision and brought it to life through a stunning digital identity. The results exceeded our expectations."
+  },
+  {
+    id: 2,
+    name: "Marcus Chen",
+    role: "Founder at Orbit Digital",
+    company: "Orbit Digital",
+    avatar: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaee30cffad6d75f74b4_Testimonial-Image-2.jpg",
+    logo: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg",
+    quote: "Cueserve delivered exactly what we were looking for—clean design, clear structure, and a strong brand presence. Their attention to detail and creative approach made the entire process effortless."
+  },
+  {
+    id: 3,
+    name: "Sophia Martinez",
+    role: "Product Director at Vertex",
+    company: "Vertex Studio",
+    avatar: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeeb6faec471807e4a4_Testimonial-Image-3.jpg",
+    logo: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg",
+    quote: "The team at Cueserve transformed our ideas into a polished and professional digital experience. Communication was smooth, timelines were met, and the final outcome was exceptional."
+  },
+  {
+    id: 4,
+    name: "David Miller",
+    role: "Marketing Lead at Apex",
+    company: "Apex Brands",
+    avatar: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeef6f6713e50ba3c26_Testimonial-Image-4.jpg",
+    logo: "https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg",
+    quote: "From concept to execution, Cueserve handled everything with precision and creativity. The final design perfectly reflects our brand and has received great feedback from our clients."
+  }
+];
 
 export default function TestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === testimonialsData.length - 1 ? 0 : prev + 1));
+  };
+
+  const current = testimonialsData[currentIndex];
+
   return (
-    <section className="section testimonials">
+    <section className="section testimonials position-relative overflow-hidden">
       <div className="container">
+        {/* Section Header Title */}
         <div className="section-title-wrapper margin-bottom">
           <div className="section-subtile-wrap">
             <div data-wf--subtitle--variant="borders" className="subtitle-wrap w-variant-89dd2e21-7faa-27ca-a536-110057684450">
               <div className="subtitle-flex-wrap">
-                <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/690f9e158664fc7bd2753513_Subtitle-Icon.svg" loading="lazy" alt="Subtitle Icon" className="subtitle-icon" />
+                <img
+                  src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/690f9e158664fc7bd2753513_Subtitle-Icon.svg"
+                  loading="lazy"
+                  alt="Subtitle Icon"
+                  className="subtitle-icon"
+                />
                 <div className="subtitle-text">Our Testimonials</div>
               </div>
             </div>
           </div>
-          <h3 className="testimonial-title">Our success is measured by the satisfaction of our clients. We <span className="testimonial-title-mark">take pride in building long partnerships.</span></h3>
+          <h3 className="testimonial-title">
+            Our success is measured by the satisfaction of our clients. We{" "}
+            <span className="testimonial-title-mark">take pride in building long partnerships.</span>
+          </h3>
         </div>
-        <div data-delay="4000" data-animation="fade" className="slider testimonials w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="1000" data-infinite="true">
-          <div className="testimonial-slider-mask w-slider-mask">
-            <div className="testimonials-slider-item w-slide">
-              <div className="single-testimonial-wrap">
-                <div className="testimonial-flex-wrap">
-                  <div className="testimonial-image-wrap">
-                    <img sizes="(max-width: 560px) 100vw, 560px" srcSet="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaedad24e443801fc6e0_Testimonial-Image-1-p-500.jpg 500w, https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaedad24e443801fc6e0_Testimonial-Image-1.jpg 560w" alt="Testimonial Image" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaedad24e443801fc6e0_Testimonial-Image-1.jpg" loading="lazy" className="testimonial-image" />
-                  </div>
-                  <div className="testimonial-content-wrapper">
-                    <div className="testimonial-content-inner">
-                      <div className="testimonial-content-top-wrap">
-                        <div className="testimonial-author-info-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg" alt="Testimonial Logo" className="testimonial-logo" />
-                          <div className="testimonial-author-name">Emma Johnson</div>
-                        </div>
-                        <div className="testimonial-quote-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg" alt="Quote" className="testimonial-quote" />
-                        </div>
-                      </div>
-                      <div className="testimonial-content-divider"></div>
-                      <div className="testimonial-details-wrap">
-                        <p className="testimonial-details">“Working with Arooth was a seamless experience from start to finish. Their team truly understood our vision and brought it to life through a stunning digital identity. The results exceeded our expectations.”</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+        {/* Main Testimonial Card Slider */}
+        <div className="testimonial-slider-container position-relative mb-16">
+          <div className="single-testimonial-wrap rounded-3xl p-8 md:p-12 transition-all duration-500 bg-white border border-gray-100 shadow-xl">
+            <div className="testimonial-flex-wrap flex flex-col md:flex-row items-center gap-8">
+              {/* Author Image */}
+              <div className="testimonial-image-wrap shrink-0 rounded-2xl overflow-hidden shadow-lg" style={{ maxWidth: "420px", width: "100%" }}>
+                <img
+                  src={current.avatar}
+                  alt={current.name}
+                  className="testimonial-image w-full h-80 object-cover"
+                />
               </div>
-            </div>
-            <div className="testimonials-slider-item w-slide">
-              <div className="single-testimonial-wrap">
-                <div className="testimonial-flex-wrap">
-                  <div className="testimonial-image-wrap">
-                    <img sizes="(max-width: 560px) 100vw, 560px" srcSet="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaee30cffad6d75f74b4_Testimonial-Image-2-p-500.jpg 500w, https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaee30cffad6d75f74b4_Testimonial-Image-2.jpg 560w" alt="Testimonial Image" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaee30cffad6d75f74b4_Testimonial-Image-2.jpg" loading="lazy" className="testimonial-image" />
-                  </div>
-                  <div className="testimonial-content-wrapper">
-                    <div className="testimonial-content-inner">
-                      <div className="testimonial-content-top-wrap">
-                        <div className="testimonial-author-info-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg" alt="Testimonial Logo" className="testimonial-logo" />
-                          <div className="testimonial-author-name">Emma Johnson</div>
-                        </div>
-                        <div className="testimonial-quote-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg" alt="Quote" className="testimonial-quote" />
-                        </div>
-                      </div>
-                      <div className="testimonial-content-divider"></div>
-                      <div className="testimonial-details-wrap">
-                        <p className="testimonial-details">“Arooth delivered exactly what we were looking for—clean design, clear structure, and a strong brand presence. Their attention to detail and creative approach made the entire process effortless.”</p>
+
+              {/* Content Wrap */}
+              <div className="testimonial-content-wrapper flex-1">
+                <div className="testimonial-content-inner">
+                  <div className="testimonial-content-top-wrap flex justify-between items-center mb-6">
+                    <div className="testimonial-author-info-wrap flex items-center gap-4">
+                      <img src={current.logo} alt="Client Logo" className="testimonial-logo h-8" />
+                      <div>
+                        <div className="testimonial-author-name text-lg font-bold text-gray-900">{current.name}</div>
+                        <div className="text-sm text-gray-500 font-medium">{current.role}</div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="testimonials-slider-item w-slide">
-              <div className="single-testimonial-wrap">
-                <div className="testimonial-flex-wrap">
-                  <div className="testimonial-image-wrap">
-                    <img sizes="(max-width: 560px) 100vw, 560px" srcSet="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeeb6faec471807e4a4_Testimonial-Image-3-p-500.jpg 500w, https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeeb6faec471807e4a4_Testimonial-Image-3.jpg 560w" alt="Testimonial Image" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeeb6faec471807e4a4_Testimonial-Image-3.jpg" loading="lazy" className="testimonial-image" />
-                  </div>
-                  <div className="testimonial-content-wrapper">
-                    <div className="testimonial-content-inner">
-                      <div className="testimonial-content-top-wrap">
-                        <div className="testimonial-author-info-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg" alt="Testimonial Logo" className="testimonial-logo" />
-                          <div className="testimonial-author-name">Emma Johnson</div>
-                        </div>
-                        <div className="testimonial-quote-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg" alt="Quote" className="testimonial-quote" />
-                        </div>
-                      </div>
-                      <div className="testimonial-content-divider"></div>
-                      <div className="testimonial-details-wrap">
-                        <p className="testimonial-details">“The team at Arooth transformed our ideas into a polished and professional digital experience. Communication was smooth, timelines were met, and the final outcome was exceptional.”</p>
-                      </div>
+                    <div className="testimonial-quote-wrap">
+                      <img
+                        src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg"
+                        alt="Quote Icon"
+                        className="testimonial-quote w-10 opacity-70"
+                      />
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="testimonials-slider-item w-slide">
-              <div className="single-testimonial-wrap">
-                <div className="testimonial-flex-wrap">
-                  <div className="testimonial-image-wrap">
-                    <img sizes="(max-width: 560px) 100vw, 560px" srcSet="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeef6f6713e50ba3c26_Testimonial-Image-4-p-500.jpg 500w, https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeef6f6713e50ba3c26_Testimonial-Image-4.jpg 560w" alt="Testimonial Image" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdaeef6f6713e50ba3c26_Testimonial-Image-4.jpg" loading="lazy" className="testimonial-image" />
-                  </div>
-                  <div className="testimonial-content-wrapper">
-                    <div className="testimonial-content-inner">
-                      <div className="testimonial-content-top-wrap">
-                        <div className="testimonial-author-info-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb118f5abb33fd2d45fd_Testimonial-Logo.svg" alt="Testimonial Logo" className="testimonial-logo" />
-                          <div className="testimonial-author-name">Emma Johnson</div>
-                        </div>
-                        <div className="testimonial-quote-wrap">
-                          <img loading="lazy" src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691cdb2fd8ce6cc23415e725_Testimonial-Quote.svg" alt="Quote" className="testimonial-quote" />
-                        </div>
-                      </div>
-                      <div className="testimonial-content-divider"></div>
-                      <div className="testimonial-details-wrap">
-                        <p className="testimonial-details">“From concept to execution, Arooth handled everything with precision and creativity. The final design perfectly reflects our brand and has received great feedback from our clients.”</p>
-                      </div>
-                    </div>
+
+                  <div className="testimonial-content-divider h-px bg-gray-100 mb-6"></div>
+
+                  <div className="testimonial-details-wrap">
+                    <p className="testimonial-details text-gray-700 text-lg leading-relaxed italic">
+                      "{current.quote}"
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="testimonial-shape-left"></div>
-          <div className="testimonial-shape-right"></div>
-          <div className="testimonial-slider-button left w-slider-arrow-left">
-            <div className="slider-button-arrow-wrap">
-              <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691099d2ad33ce03facdb99e_Arrow-Left-Black.svg" loading="lazy" alt="Arrow Left" className="slider-button-arrow" />
-              <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6942f5cc3e815cc8e4cb5917_Arrow-Left-White.svg" loading="lazy" alt="Arrow Left" className="slider-button-arrow absolute" />
-            </div>
+
+          {/* Navigation Controls */}
+          <div className="slider-controls-wrap flex items-center justify-end gap-3 mt-6">
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous Testimonial"
+              className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm cursor-pointer"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <span className="text-sm font-semibold text-gray-500 px-2">
+              0{currentIndex + 1} / 0{testimonialsData.length}
+            </span>
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next Testimonial"
+              className="w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm cursor-pointer"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
-          <div className="testimonial-slider-button right w-slider-arrow-right">
-            <div className="slider-button-arrow-wrap">
-              <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/691099d2cb74b898d73240fe_Arrow-Right-Black.svg" loading="lazy" alt="Arrow Right" className="slider-button-arrow" />
-              <img src="https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/6942f5cc9afcd65f1a03e598_Arrow-Right-White.svg" loading="lazy" alt="Arrow Right" className="slider-button-arrow absolute" />
-            </div>
-          </div>
-          <div className="display-none w-slider-nav w-round"></div>
         </div>
-        
-        <div className="testimonials-stats-wrapper">
-          <div className="testimonials-stats-flex">
+
+        {/* Testimonials Stats Counters */}
+        <div className="testimonials-stats-wrapper py-8 border-t border-b border-gray-100">
+          <div className="testimonials-stats-flex grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="single-testimonial-stat-wrap">
-              <div data-w-id="62d82b1b-a2c8-35f8-4c8e-7fdc639d5c66" className="testimonial-counter-wrap">
-                <div style={{ WebkitTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', MozTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', msTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', transform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)' }} className="counter-number-row _1">
-                  <h2 className="single-number">0</h2><h2 className="single-number">1</h2><h2 className="single-number">2</h2><h2 className="single-number">3</h2><h2 className="single-number">4</h2><h2 className="single-number">5</h2><h2 className="single-number">9</h2><h2 className="single-number">7</h2><h2 className="single-number">8</h2><h2 className="single-number">9</h2><h2 className="single-number">0</h2>
-                </div>
-                <div style={{ WebkitTransform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', MozTransform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', msTransform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', transform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)' }} className="counter-number-row _2">
-                  <h2 className="single-number">0</h2><h2 className="single-number">1</h2><h2 className="single-number">2</h2><h2 className="single-number">3</h2><h2 className="single-number">4</h2><h2 className="single-number">5</h2><h2 className="single-number">6</h2><h2 className="single-number">7</h2><h2 className="single-number">5</h2><h2 className="single-number">9</h2><h2 className="single-number">0</h2>
-                </div>
-                <h2 className="single-number">%</h2>
+              <div className="testimonial-counter-wrap flex justify-center items-baseline gap-1 text-4xl font-extrabold text-gray-900 mb-2">
+                <span>99</span>
+                <span className="text-blue-600">%</span>
               </div>
-              <div className="testimonial-stat-text">Client Satisfaction Rate</div>
+              <div className="testimonial-stat-text text-sm font-medium text-gray-600">Client Satisfaction Rate</div>
             </div>
-            
-            <div className="testimonials-stats-divider"></div>
-            
+
             <div className="single-testimonial-stat-wrap">
-              <div data-w-id="62d82b1b-a2c8-35f8-4c8e-7fdc639d5c9b" className="testimonial-counter-wrap">
-                <div style={{ WebkitTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', MozTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', msTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', transform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)' }} className="counter-number-row _1">
-                  <h2 className="single-number">0</h2><h2 className="single-number">1</h2><h2 className="single-number">2</h2><h2 className="single-number">3</h2><h2 className="single-number">4</h2><h2 className="single-number">5</h2><h2 className="single-number">1</h2><h2 className="single-number">7</h2><h2 className="single-number">8</h2><h2 className="single-number">9</h2><h2 className="single-number">0</h2>
-                </div>
-                <div style={{ WebkitTransform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', MozTransform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', msTransform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', transform: 'translate3d(0, 0%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)' }} className="counter-number-row _2">
-                  <h2 className="single-number">0</h2><h2 className="single-number">1</h2><h2 className="single-number">2</h2><h2 className="single-number">3</h2><h2 className="single-number">4</h2><h2 className="single-number">5</h2><h2 className="single-number">6</h2><h2 className="single-number">7</h2><h2 className="single-number">2</h2><h2 className="single-number">9</h2><h2 className="single-number">0</h2>
-                </div>
-                <div style={{ WebkitTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', MozTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', msTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', transform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)' }} className="counter-number-row _1">
-                  <h2 className="single-number">0</h2><h2 className="single-number">1</h2><h2 className="single-number">2</h2><h2 className="single-number">3</h2><h2 className="single-number">4</h2><h2 className="single-number">5</h2><h2 className="single-number">0</h2><h2 className="single-number">7</h2><h2 className="single-number">8</h2><h2 className="single-number">9</h2><h2 className="single-number">0</h2>
-                </div>
-                <h2 className="single-number">+</h2>
+              <div className="testimonial-counter-wrap flex justify-center items-baseline gap-1 text-4xl font-extrabold text-gray-900 mb-2">
+                <span>150</span>
+                <span className="text-blue-600">+</span>
               </div>
-              <div className="testimonial-stat-text">Global Brands Served Worldwide</div>
+              <div className="testimonial-stat-text text-sm font-medium text-gray-600">Global Brands Served Worldwide</div>
             </div>
-            
-            <div className="testimonials-stats-divider"></div>
-            
+
             <div className="single-testimonial-stat-wrap">
-              <div data-w-id="62d82b1b-a2c8-35f8-4c8e-7fdc639d5ce7" className="testimonial-counter-wrap">
-                <div style={{ WebkitTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', MozTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', msTransform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', transform: 'translate3d(0, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)' }} className="counter-number-row _1">
-                  <h2 className="single-number">0</h2><h2 className="single-number">1</h2><h2 className="single-number">2</h2><h2 className="single-number">3</h2><h2 className="single-number">4</h2><h2 className="single-number">5</h2><h2 className="single-number">5</h2><h2 className="single-number">7</h2><h2 className="single-number">8</h2><h2 className="single-number">9</h2><h2 className="single-number">0</h2>
-                </div>
-                <h2 className="single-number">X</h2>
+              <div className="testimonial-counter-wrap flex justify-center items-baseline gap-1 text-4xl font-extrabold text-gray-900 mb-2">
+                <span>5</span>
+                <span className="text-blue-600">X</span>
               </div>
-              <div className="testimonial-stat-text">Average Growth Achieved</div>
+              <div className="testimonial-stat-text text-sm font-medium text-gray-600">Average Growth Achieved</div>
             </div>
           </div>
         </div>
-        
-        <div className="section-border-bottom"></div>
       </div>
     </section>
   );

@@ -32,30 +32,6 @@
   }
 }
 
-/* Ensure banner content & buttons are always visible across all initial states */
-.banner-details-wrap,
-.banner-button-wrap,
-.after-banner-content-wrap,
-.after-banner-title,
-.after-banner-details,
-.banner-details {
-  opacity: 1 !important;
-  visibility: visible !important;
-  filter: none !important;
-}
-
-/* Ensure banner content & ticker elements are always visible */
-html.w-mod-js:not(.w-mod-ix3) :is(
-  .after-banner-wrapper,
-  .after-banner-inner,
-  .after-banner-wrap,
-  .after-banner-ticker-wrap,
-  .after-banner-content-wrap
-) {
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
 /* Hide "Made in Webflow" badge */
 .w-webflow-badge {
   display: none !important;
@@ -72,14 +48,6 @@ html.w-mod-js:not(.w-mod-ix3) :is(
   100% {
     transform: translate3d(-33.3333%, 0, 0);
   }
-}
-
-.after-banner-wrapper,
-.after-banner-inner,
-.after-banner-wrap {
-  visibility: visible !important;
-  opacity: 1 !important;
-  overflow: visible !important;
 }
 
 .after-banner-ticker-wrap {

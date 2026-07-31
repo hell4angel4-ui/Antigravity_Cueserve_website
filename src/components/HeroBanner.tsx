@@ -8,66 +8,21 @@ interface TechItem {
 }
 
 const techItems: TechItem[] = [
-  {
-    name: 'Microsoft .NET',
-    icon: 'https://cdn.simpleicons.org/dotnet/512BD4',
-  },
-  {
-    name: 'Angular',
-    icon: 'https://cdn.simpleicons.org/angular/DD0031',
-  },
-  {
-    name: 'React',
-    icon: 'https://cdn.simpleicons.org/react/61DAFB',
-  },
-  {
-    name: 'Next.js',
-    icon: 'https://cdn.simpleicons.org/nextdotjs/ffffff',
-  },
-  {
-    name: 'HTML5',
-    icon: 'https://cdn.simpleicons.org/html5/E34F26',
-  },
-  {
-    name: 'CSS3',
-    icon: 'https://cdn.simpleicons.org/css3/1572B6',
-  },
-  {
-    name: 'JavaScript',
-    icon: 'https://cdn.simpleicons.org/javascript/F7DF1E',
-  },
-  {
-    name: 'Node.js',
-    icon: 'https://cdn.simpleicons.org/nodedotjs/5FA04E',
-  },
-  {
-    name: 'Android Studio',
-    icon: 'https://cdn.simpleicons.org/androidstudio/3DDC84',
-  },
-  {
-    name: 'Laravel',
-    icon: 'https://cdn.simpleicons.org/laravel/FF2D20',
-  },
-  {
-    name: 'WordPress',
-    icon: 'https://cdn.simpleicons.org/wordpress/21759B',
-  },
-  {
-    name: 'Swift',
-    icon: 'https://cdn.simpleicons.org/swift/F05138',
-  },
-  {
-    name: 'TypeScript',
-    icon: 'https://cdn.simpleicons.org/typescript/3178C6',
-  },
-  {
-    name: 'Python',
-    icon: 'https://cdn.simpleicons.org/python/3776AB',
-  },
-  {
-    name: 'Flutter',
-    icon: 'https://cdn.simpleicons.org/flutter/02569B',
-  },
+  { name: 'Microsoft .NET', icon: '/assets/images/logos/dotnet.svg' },
+  { name: 'Angular', icon: '/assets/images/logos/angular.svg' },
+  { name: 'React', icon: '/assets/images/logos/react.svg' },
+  { name: 'Next.js', icon: '/assets/images/logos/nextjs.svg' },
+  { name: 'HTML5', icon: '/assets/images/logos/html5.svg' },
+  { name: 'CSS3', icon: '/assets/images/logos/css3.svg' },
+  { name: 'JavaScript', icon: '/assets/images/logos/javascript.svg' },
+  { name: 'Node.js', icon: '/assets/images/logos/nodejs.svg' },
+  { name: 'Android Studio', icon: '/assets/images/logos/androidstudio.svg' },
+  { name: 'Laravel', icon: '/assets/images/logos/laravel.svg' },
+  { name: 'WordPress', icon: '/assets/images/logos/wordpress.svg' },
+  { name: 'Swift', icon: '/assets/images/logos/swift.svg' },
+  { name: 'TypeScript', icon: '/assets/images/logos/typescript.svg' },
+  { name: 'Python', icon: '/assets/images/logos/python.svg' },
+  { name: 'Flutter', icon: '/assets/images/logos/flutter.svg' },
 ];
 
 export default function HeroBanner() {
@@ -79,7 +34,7 @@ export default function HeroBanner() {
             src={item.icon}
             alt={`${item.name} logo`}
             className="tech-logo-img"
-            loading="lazy"
+            loading="eager"
           />
         </div>
       ))}

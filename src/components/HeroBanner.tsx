@@ -114,10 +114,10 @@ export default function HeroBanner() {
             <div className="container banner-container">
               <div className="banner-content-wrapper">
                 <div className="banner-content-bottom">
-                  <div data-w-id="3c7cafd2-ce17-ad7f-9079-2f9d19276a30" style={{ transform: 'translate3d(-30px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', opacity: 0, filter: 'blur(5px)' }} className="banner-details-wrap">
+                  <div className="banner-details-wrap">
                     <p className="banner-details">At Cueserve, we blend creativity with strategy to build digital experiences that move brands forward. From crafting standout websites.</p>
                   </div>
-                  <div data-w-id="501f0b19-4ed6-6324-bf7b-ba48bf2901f7" style={{ transform: 'translate3d(30px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', opacity: 0, filter: 'blur(5px)' }} className="banner-button-wrap">
+                  <div className="banner-button-wrap">
                     <Link data-wf--primary-button--variant="alice-blue" href="/contact-us" className="primary-button w-variant-3b35c6e6-bf39-22a4-81e5-2d58550c88a7 w-inline-block">
                       <div className="primary-button-flex">
                         <div className="primary-button-text-wrap">

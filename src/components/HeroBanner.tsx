@@ -85,13 +85,13 @@ export default function HeroBanner() {
                               <div className="primary-button-hover-bg"></div>
                             </Link>
                           </div>
-                        </div>
-                        
-                        <div className="after-banner-ticker-wrap">
-                          <div className="after-banner-ticker-flex">
-                            {renderLogoGroup('group-1')}
-                            {renderLogoGroup('group-2')}
-                            {renderLogoGroup('group-3')}
+                          
+                          <div className="after-banner-ticker-wrap">
+                            <div className="after-banner-ticker-flex">
+                              {renderLogoGroup('group-1')}
+                              {renderLogoGroup('group-2')}
+                              {renderLogoGroup('group-3')}
+                            </div>
                           </div>
                         </div>
                         

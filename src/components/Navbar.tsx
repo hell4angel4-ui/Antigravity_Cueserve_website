@@ -1,24 +1,43 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
+  const pathname = usePathname() || '/';
+
+  const isActive = (path: string) => {
+    if (path === '/' && pathname === '/') return true;
+    if (path !== '/' && pathname.startsWith(path)) return true;
+    return false;
+  };
+
   return (
     <div data-animation="default" data-collapse="all" data-duration="0" data-easing="ease" data-easing2="ease" role="banner" className="navbar w-nav">
       <div className="container navbar-container">
         <div className="navbar-wrap">
           <div className="navbar-flex-wrap">
             <div className="nav-flex-left">
-              <Link href="/" aria-current="page" className="main-logo-wrap w-nav-brand w--current">
+              <Link href="/" className={`main-logo-wrap w-nav-brand ${isActive('/') ? 'w--current' : ''}`}>
                 <img src="/cueserve-logo.png" loading="lazy" alt="Cueserve Logo" className="main-logo" style={{ maxHeight: '40px', width: 'auto' }} />
               </Link>
               <div className="nav-links-wrapper">
                 <div className="nav-links-flex">
-                  <Link href="/" aria-current="page" className="single-nav-link w-inline-block w--current"><div>Home</div></Link>
-                  <Link href="/about-us" className="single-nav-link w-inline-block"><div>About Us</div></Link>
-                  <Link href="/services" className="single-nav-link w-inline-block"><div>Services</div></Link>
-                  <Link href="/projects" className="single-nav-link w-inline-block"><div>Works</div></Link>
-                  <Link href="/contact-us" className="single-nav-link w-inline-block"><div>Contact</div></Link>
+                  <Link href="/" className={`single-nav-link w-inline-block ${isActive('/') ? 'w--current' : ''}`}>
+                    <div>Home</div>
+                  </Link>
+                  <Link href="/about-us" className={`single-nav-link w-inline-block ${isActive('/about-us') ? 'w--current' : ''}`}>
+                    <div>About Us</div>
+                  </Link>
+                  <Link href="/services" className={`single-nav-link w-inline-block ${isActive('/services') ? 'w--current' : ''}`}>
+                    <div>Services</div>
+                  </Link>
+                  <Link href="/projects" className={`single-nav-link w-inline-block ${isActive('/projects') ? 'w--current' : ''}`}>
+                    <div>Works</div>
+                  </Link>
+                  <Link href="/contact-us" className={`single-nav-link w-inline-block ${isActive('/contact-us') ? 'w--current' : ''}`}>
+                    <div>Contact</div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -50,7 +69,7 @@ export default function Navbar() {
                             <div className="navigation-content-wrapper">
                               <div className="navigation-contents">
                                 <div className="navigation-links-flex">
-                                  <Link href="/" aria-current="page" className="single-navigation-links w-inline-block w--current">
+                                  <Link href="/" className={`single-navigation-links w-inline-block ${isActive('/') ? 'w--current' : ''}`}>
                                     <div className="navigation-inline-wrap">
                                       <div className="navigation-text-flex">
                                         <div className="navigation-link-text">Home</div>
@@ -61,7 +80,7 @@ export default function Navbar() {
                                       <div className="navigation-link-border-inner"></div>
                                     </div>
                                   </Link>
-                                  <Link href="/about-us" className="single-navigation-links w-inline-block">
+                                  <Link href="/about-us" className={`single-navigation-links w-inline-block ${isActive('/about-us') ? 'w--current' : ''}`}>
                                     <div className="navigation-inline-wrap">
                                       <div className="navigation-text-flex">
                                         <div className="navigation-link-text">About</div>
@@ -72,7 +91,7 @@ export default function Navbar() {
                                       <div className="navigation-link-border-inner"></div>
                                     </div>
                                   </Link>
-                                  <Link href="/services" className="single-navigation-links w-inline-block">
+                                  <Link href="/services" className={`single-navigation-links w-inline-block ${isActive('/services') ? 'w--current' : ''}`}>
                                     <div className="navigation-inline-wrap">
                                       <div className="navigation-text-flex">
                                         <div className="navigation-link-text">Services</div>
@@ -83,7 +102,7 @@ export default function Navbar() {
                                       <div className="navigation-link-border-inner"></div>
                                     </div>
                                   </Link>
-                                  <Link href="/projects" className="single-navigation-links w-inline-block">
+                                  <Link href="/projects" className={`single-navigation-links w-inline-block ${isActive('/projects') ? 'w--current' : ''}`}>
                                     <div className="navigation-inline-wrap">
                                       <div className="navigation-text-flex">
                                         <div className="navigation-link-text">Works</div>

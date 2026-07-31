@@ -210,3 +210,37 @@
 .service-tab-link:not(.w--current):not(.active) .service-tab-link-image-wrap {
   display: none !important;
 }
+
+/* ==========================================================================
+   Contact Us Page Custom Styles & Form Checkboxes
+   ========================================================================== */
+
+.contact-image {
+  visibility: visible !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 20px !important;
+  object-fit: cover !important;
+}
+
+.single-checkbox-wrap {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+.contact-checkbox.w--redirected-checked {
+  background-color: #2d8cff !important;
+  border-color: #2d8cff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") !important;
+  background-size: 14px 14px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.single-checkbox-wrap.active-checkbox .checkbox-label {
+  color: #2d8cff !important;
+  font-weight: 600 !important;
+}

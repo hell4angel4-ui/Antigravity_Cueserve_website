@@ -1,9 +1,17 @@
-/* Cueserve brand overrides */
+/* ==========================================================================
+   Cueserve Brand Overrides
+   Only add styles here that are NOT handled by the Webflow shared stylesheet.
+   The Webflow IX2 engine + shared CSS handle all hover effects, animations,
+   and transitions natively. Do NOT override Webflow classes.
+   ========================================================================== */
+
+/* Cueserve brand tokens */
 :root {
   --cueserve-blue: #2d8cff;
   --cueserve-navy: #0a2540;
 }
 
+/* Logo sizing */
 .main-logo,
 .footer-logo {
   height: 28px;
@@ -24,7 +32,7 @@
   }
 }
 
-/* Ensure all banner bottom text, paragraphs, buttons & details are always 100% visible */
+/* Ensure banner bottom text & buttons are always visible (IX2 fallback) */
 .banner-details-wrap,
 .banner-button-wrap,
 .after-banner-content-wrap,
@@ -39,6 +47,7 @@
 
 /* ==========================================================================
    Home Page Tech Stack Marquee Ticker
+   (Custom ticker not in the original Webflow template)
    ========================================================================== */
 
 @keyframes marquee-infinite {
@@ -131,273 +140,7 @@
 }
 
 /* ==========================================================================
-   Hero Section Ticker Animation (About Us & Services Pages)
-   ========================================================================== */
-
-@keyframes service-ticker-scroll {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-33.3333%, 0, 0);
-  }
-}
-
-.service-banner-ticker-wrap {
-  visibility: visible !important;
-  opacity: 1 !important;
-  display: block !important;
-  overflow: hidden !important;
-  width: 100% !important;
-}
-
-.service-banner-ticker-flex {
-  display: flex !important;
-  align-items: center !important;
-  width: max-content !important;
-  animation: service-ticker-scroll 25s linear infinite !important;
-  will-change: transform;
-}
-
-.service-banner-ticker-flex:hover {
-  animation-play-state: paused !important;
-}
-
-/* ==========================================================================
-   Services Section Grid & Card Hover Effects
-   ========================================================================== */
-
-.services-grid-wrap {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 24px !important;
-}
-
-@media screen and (max-width: 991px) {
-  .services-grid-wrap {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-.single-service-wrap {
-  position: relative !important;
-  overflow: hidden !important;
-  border-radius: 24px !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  padding: 36px !important;
-  background: rgba(10, 25, 64, 0.6) !important;
-}
-
-.single-service-hover-bg {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  background: linear-gradient(135deg, #2d8cff 0%, #0044aa 100%) !important;
-  opacity: 0 !important;
-  transform: scale(0.95) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  z-index: 1 !important;
-  border-radius: 24px !important;
-}
-
-.service-contents {
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-.single-service-icon {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.single-service-name {
-  transition: color 0.3s ease !important;
-}
-
-.single-service-details {
-  transition: color 0.3s ease !important;
-}
-
-.more-button-arrow,
-.more-button-arrow-hover {
-  transition: transform 0.3s ease !important;
-}
-
-/* Hover States for Services Cards */
-.single-service-wrap:hover {
-  border-color: rgba(45, 140, 255, 0.6) !important;
-  transform: translateY(-6px) !important;
-  box-shadow: 0 16px 36px rgba(45, 140, 255, 0.3) !important;
-}
-
-.single-service-wrap:hover .single-service-hover-bg {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-}
-
-.single-service-wrap:hover .single-service-name {
-  color: #ffffff !important;
-}
-
-.single-service-wrap:hover .single-service-details {
-  color: rgba(255, 255, 255, 0.95) !important;
-}
-
-.single-service-wrap:hover .single-service-icon {
-  transform: scale(1.15) rotate(-4deg) !important;
-}
-
-.single-service-wrap:hover .more-button {
-  background-color: #ffffff !important;
-  border-color: #ffffff !important;
-}
-
-.single-service-wrap:hover .more-button-text {
-  color: #0a2540 !important;
-}
-
-.single-service-wrap:hover .more-button-arrow {
-  transform: translate(3px, -3px) !important;
-  filter: brightness(0) !important;
-}
-
-/* ==========================================================================
-   Works / Projects Page Styling & Hover Animations
-   ========================================================================== */
-
-.projects-grid-wrap {
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-  gap: 30px !important;
-}
-
-@media screen and (max-width: 991px) {
-  .projects-grid-wrap {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-.single-project-wrap {
-  position: relative !important;
-  border-radius: 24px !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  background: rgba(10, 25, 64, 0.7) !important;
-}
-
-.single-project-image-wrap {
-  display: block !important;
-  overflow: hidden !important;
-  border-radius: 24px 24px 0 0 !important;
-  position: relative !important;
-}
-
-.project-image.single-project {
-  width: 100% !important;
-  height: 380px !important;
-  object-fit: cover !important;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease !important;
-}
-
-.full-width-project .project-image.single-project {
-  height: 520px !important;
-}
-
-@media screen and (max-width: 767px) {
-  .project-image.single-project,
-  .full-width-project .project-image.single-project {
-    height: 280px !important;
-  }
-}
-
-.project-arrow-button.single-project {
-  position: absolute !important;
-  right: 24px !important;
-  bottom: 24px !important;
-  width: 52px !important;
-  height: 52px !important;
-  border-radius: 50% !important;
-  background: rgba(10, 25, 64, 0.85) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  z-index: 10 !important;
-}
-
-.project-button-arrow.single-project {
-  width: 20px !important;
-  height: 20px !important;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.single-project-content-wrap {
-  position: relative !important;
-  padding: 24px 28px !important;
-  background: rgba(10, 25, 64, 0.9) !important;
-  backdrop-filter: blur(12px) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-.single-project-hover-bg {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  background: linear-gradient(135deg, rgba(45, 140, 255, 0.25) 0%, rgba(10, 37, 64, 0.95) 100%) !important;
-  opacity: 0 !important;
-  transition: opacity 0.4s ease !important;
-  z-index: 0 !important;
-}
-
-.single-project-contents-flex {
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-.single-project-name {
-  font-size: 1.35rem !important;
-  font-weight: 700 !important;
-  color: #ffffff !important;
-  transition: color 0.3s ease !important;
-}
-
-/* Hover States for Works / Projects Cards */
-.single-project-wrap:hover {
-  transform: translateY(-8px) !important;
-  border-color: rgba(45, 140, 255, 0.6) !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(45, 140, 255, 0.25) !important;
-}
-
-.single-project-wrap:hover .project-image.single-project {
-  transform: scale(1.08) !important;
-  filter: brightness(1.05) !important;
-}
-
-.single-project-wrap:hover .project-arrow-button.single-project {
-  background: #2d8cff !important;
-  border-color: #2d8cff !important;
-  transform: scale(1.15) rotate(45deg) !important;
-  box-shadow: 0 0 20px rgba(45, 140, 255, 0.8) !important;
-}
-
-.single-project-wrap:hover .single-project-name {
-  color: #2d8cff !important;
-}
-
-.single-project-wrap:hover .single-project-hover-bg {
-  opacity: 1 !important;
-}
-
-/* ==========================================================================
-   Contact Us Page Custom Styles & Form Checkboxes
+   Contact Us Page - Contact Image (IX2 fallback)
    ========================================================================== */
 
 .contact-image {
@@ -411,11 +154,7 @@
   object-fit: cover !important;
 }
 
-.single-checkbox-wrap {
-  cursor: pointer !important;
-  user-select: none !important;
-}
-
+/* Contact form checkbox active state */
 .contact-checkbox.w--redirected-checked {
   background-color: #2d8cff !important;
   border-color: #2d8cff !important;

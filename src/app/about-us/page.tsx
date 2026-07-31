@@ -1,24 +1,24 @@
 import AboutHeroBanner from '@/components/AboutHeroBanner';
-import AboutSection from '@/components/AboutSection';
-import ValuesSection from '@/components/ValuesSection';
+import AboutMainSection from '@/components/AboutMainSection';
 import TeamMembersSection from '@/components/TeamMembersSection';
+import ValuesSection from '@/components/ValuesSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FaqSection from '@/components/FaqSection';
 
 export const metadata = {
-  title: 'About Us - Cueserve Digital Agency',
-  description: 'Crafting the future of digital brands. Learn more about Cueserve, our mission, vision, and talented team of designers, developers, and strategists.',
+  title: 'About Us - Cueserve',
+  description: 'Learn more about Cueserve, our team of designers, developers, and thinkers driven by one purpose.',
 };
 
 export default function AboutPage() {
   return (
-    <main className="about-us-page">
+    <>
       <AboutHeroBanner />
-      <AboutSection isAboutPage={true} />
-      <ValuesSection />
+      <AboutMainSection />
       <TeamMembersSection />
+      <ValuesSection />
       <TestimonialsSection />
       <FaqSection />
-    </main>
+    </>
   );
 }

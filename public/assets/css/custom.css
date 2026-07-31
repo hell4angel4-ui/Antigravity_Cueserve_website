@@ -24,101 +24,103 @@
   }
 }
 
-/* Nav Links Dynamic Active Pill Styling */
-.single-nav-link {
-  transition: background-color 0.25s ease, color 0.25s ease;
+/* ==========================================================================
+   Tech Stack Marquee Ticker Styles
+   ========================================================================== */
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
-.single-nav-link.w--current {
-  background-color: var(--alice-blue, #eff4ff) !important;
-  color: var(--primary, #2d8cff) !important;
-  font-weight: 500;
+/* Override Webflow IX2 hidden visibility for the ticker wrap */
+html.w-mod-js:not(.w-mod-ix3) .after-banner-ticker-wrap,
+.after-banner-ticker-wrap {
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  padding: 16px 0 !important;
+  background: rgba(10, 25, 64, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
-.single-nav-link:hover:not(.w--current) {
-  color: var(--primary, #2d8cff);
+.after-banner-ticker-flex {
+  display: flex !important;
+  align-items: center !important;
+  width: max-content !important;
+  animation: marquee-scroll 35s linear infinite !important;
+  will-change: transform;
 }
 
-/* Service Banner Ticker Infinite Marquee */
-.service-banner-ticker-wrap {
-  overflow: hidden;
-  width: 100%;
+.after-banner-ticker-flex:hover {
+  animation-play-state: paused !important;
+}
+
+.tech-logo-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 22px !important;
+  margin: 0 10px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: 50px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  flex-shrink: 0 !important;
+}
+
+.tech-logo-item:hover {
+  background: rgba(45, 140, 255, 0.2) !important;
+  border-color: rgba(45, 140, 255, 0.6) !important;
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 8px 24px rgba(45, 140, 255, 0.3) !important;
+}
+
+.tech-logo-icon-wrap {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tech-logo-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.tech-logo-item:hover .tech-logo-img {
+  transform: scale(1.15) rotate(4deg);
+}
+
+.tech-logo-text {
+  font-family: 'Instrument Sans', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.4px;
   white-space: nowrap;
 }
 
-.service-banner-ticker-flex {
-  display: flex;
-  width: max-content;
-  animation: tickerMarquee 25s linear infinite;
-}
-
-@keyframes tickerMarquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
-}
-
-/* Team Member Cards Styling & Hover Effects */
-.single-member-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.single-member-wrap:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
-.member-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.single-member-wrap:hover .member-image {
-  transform: scale(1.05);
-}
-
-.single-member-social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  color: #ffffff;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.single-member-social-link:hover {
-  background: var(--cueserve-blue, #2d8cff);
-  transform: translateY(-2px);
-}
-
-/* Values Section Enhancements */
-.mission-name-wrap {
-  border-radius: 30px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.mission-card-wrap {
-  transition: all 0.3s ease;
-}
-
-.mission-card-wrap:hover {
-  transform: translateY(-3px);
-}
-
-/* Testimonial Section Adjustments */
-.single-testimonial-wrap {
-  transition: opacity 0.4s ease, transform 0.4s ease;
+.tech-logo-divider {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  margin-left: 4px;
 }

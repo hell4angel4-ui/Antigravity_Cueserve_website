@@ -1,9 +1,95 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+
+interface TechItem {
+  name: string;
+  icon: string;
+}
+
+const techItems: TechItem[] = [
+  {
+    name: 'Microsoft .NET',
+    icon: 'https://cdn.simpleicons.org/dotnet/512BD4',
+  },
+  {
+    name: 'Angular',
+    icon: 'https://cdn.simpleicons.org/angular/DD0031',
+  },
+  {
+    name: 'React',
+    icon: 'https://cdn.simpleicons.org/react/61DAFB',
+  },
+  {
+    name: 'Next.js',
+    icon: 'https://cdn.simpleicons.org/nextdotjs/ffffff',
+  },
+  {
+    name: 'HTML5',
+    icon: 'https://cdn.simpleicons.org/html5/E34F26',
+  },
+  {
+    name: 'CSS3',
+    icon: 'https://cdn.simpleicons.org/css3/1572B6',
+  },
+  {
+    name: 'JavaScript',
+    icon: 'https://cdn.simpleicons.org/javascript/F7DF1E',
+  },
+  {
+    name: 'Node.js',
+    icon: 'https://cdn.simpleicons.org/nodedotjs/5FA04E',
+  },
+  {
+    name: 'Android Studio',
+    icon: 'https://cdn.simpleicons.org/androidstudio/3DDC84',
+  },
+  {
+    name: 'Laravel',
+    icon: 'https://cdn.simpleicons.org/laravel/FF2D20',
+  },
+  {
+    name: 'WordPress',
+    icon: 'https://cdn.simpleicons.org/wordpress/21759B',
+  },
+  {
+    name: 'Swift',
+    icon: 'https://cdn.simpleicons.org/swift/F05138',
+  },
+  {
+    name: 'TypeScript',
+    icon: 'https://cdn.simpleicons.org/typescript/3178C6',
+  },
+  {
+    name: 'Python',
+    icon: 'https://cdn.simpleicons.org/python/3776AB',
+  },
+  {
+    name: 'Flutter',
+    icon: 'https://cdn.simpleicons.org/flutter/02569B',
+  },
+];
 
 export default function HeroBanner() {
+  const renderLogoGroup = (keyPrefix: string) => (
+    <>
+      {techItems.map((item, index) => (
+        <div key={`${keyPrefix}-${index}`} className="tech-logo-item">
+          <div className="tech-logo-icon-wrap">
+            <img
+              src={item.icon}
+              alt={`${item.name} logo`}
+              className="tech-logo-img"
+              loading="lazy"
+            />
+          </div>
+          <span className="tech-logo-text">{item.name}</span>
+          <span className="tech-logo-divider">✦</span>
+        </div>
+      ))}
+    </>
+  );
+
   return (
     <section className="banner-section">
       <div className="banner-vh-wrap">
@@ -52,15 +138,8 @@ export default function HeroBanner() {
                         
                         <div className="after-banner-ticker-wrap">
                           <div className="after-banner-ticker-flex">
-                            <div className="after-banner-ticker-item">
-                              <div className="after-banner-ticker-text"><span className="after-banner-ticker-text-italic">Real Results *</span> Modern <span className="after-banner-ticker-text-mark">Design</span> <span className="after-banner-ticker-text-italic">*</span> <span className="after-banner-ticker-text-bold">Real</span> <span className="after-banner-ticker-text-mark">Results</span></div>
-                            </div>
-                            <div className="after-banner-ticker-item">
-                              <div className="after-banner-ticker-text"><span className="after-banner-ticker-text-italic">Real Results *</span> Modern <span className="after-banner-ticker-text-mark">Design</span> <span className="after-banner-ticker-text-italic">*</span> <span className="after-banner-ticker-text-bold">Real</span> <span className="after-banner-ticker-text-mark">Results</span></div>
-                            </div>
-                            <div className="after-banner-ticker-item">
-                              <div className="after-banner-ticker-text"><span className="after-banner-ticker-text-italic">Real Results *</span> Modern <span className="after-banner-ticker-text-mark">Design</span> <span className="after-banner-ticker-text-italic">*</span> <span className="after-banner-ticker-text-bold">Real</span> <span className="after-banner-ticker-text-mark">Results</span></div>
-                            </div>
+                            {renderLogoGroup('group-1')}
+                            {renderLogoGroup('group-2')}
                           </div>
                         </div>
                         
@@ -83,23 +162,10 @@ export default function HeroBanner() {
             <div className="container banner-container">
               <div className="banner-content-wrapper">
                 <div className="banner-content-bottom">
-                  {/* Instant Entrance for Bottom Details Text */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                    className="banner-details-wrap"
-                  >
+                  <div data-w-id="3c7cafd2-ce17-ad7f-9079-2f9d19276a30" style={{ transform: 'translate3d(-30px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', opacity: 0, filter: 'blur(5px)' }} className="banner-details-wrap">
                     <p className="banner-details">At Cueserve, we blend creativity with strategy to build digital experiences that move brands forward. From crafting standout websites.</p>
-                  </motion.div>
-
-                  {/* Instant Entrance for Get Started Button */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                    className="banner-button-wrap"
-                  >
+                  </div>
+                  <div data-w-id="501f0b19-4ed6-6324-bf7b-ba48bf2901f7" style={{ transform: 'translate3d(30px, 0px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)', opacity: 0, filter: 'blur(5px)' }} className="banner-button-wrap">
                     <Link data-wf--primary-button--variant="alice-blue" href="/contact-us" className="primary-button w-variant-3b35c6e6-bf39-22a4-81e5-2d58550c88a7 w-inline-block">
                       <div className="primary-button-flex">
                         <div className="primary-button-text-wrap">
@@ -115,7 +181,7 @@ export default function HeroBanner() {
                       </div>
                       <div className="primary-button-hover-bg"></div>
                     </Link>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
               <div className="banner-borders-wrapper">

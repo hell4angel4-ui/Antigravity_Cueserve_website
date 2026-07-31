@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import WebflowInit from '@/components/WebflowInit';
 
 export const metadata: Metadata = {
   title: 'Cueserve | Software & Website Development',
@@ -45,6 +46,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <WebflowInit />
         <div className="page-wrapper">
           <Navbar />
           <main>{children}</main>

@@ -1,6 +1,9 @@
 /* Webflow shared stylesheet from CDN */
 @import url('https://cdn.prod.website-files.com/68dbb9a72b91c794d0cdd10c/css/arooth.webflow.shared.aea604727.css');
 
+/* Cueserve Custom Animations & Brand Overrides */
+@import '../../public/assets/css/custom.css';
+
 /* Ensure banner content & ticker elements are always visible */
 html.w-mod-js:not(.w-mod-ix3) :is(
   .after-banner-wrapper,

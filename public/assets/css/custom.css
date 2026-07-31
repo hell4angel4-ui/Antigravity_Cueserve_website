@@ -131,7 +131,7 @@
 }
 
 /* ==========================================================================
-   About Us Hero Section Ticker Animation
+   Hero Section Ticker Animation (About Us & Services Pages)
    ========================================================================== */
 
 @keyframes service-ticker-scroll {
@@ -164,51 +164,35 @@
 }
 
 /* ==========================================================================
-   Services Section Active State Styles
+   Services Section Grid & Card Hover Effects
    ========================================================================== */
 
-.service-tab-link {
-  transition: all 0.3s ease !important;
-  cursor: pointer !important;
+.services-grid-wrap {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 24px !important;
 }
 
-.service-tab-link.w--current,
-.service-tab-link.active {
-  background-color: transparent !important;
+@media screen and (max-width: 991px) {
+  .services-grid-wrap {
+    grid-template-columns: 1fr !important;
+  }
 }
 
-.service-tab-link.w--current .service-name,
-.service-tab-link.active .service-name {
-  color: #2d8cff !important;
-  font-weight: 700 !important;
-}
-
-.service-tab-link.w--current .service-name-dot,
-.service-tab-link.active .service-name-dot {
-  background-color: #2d8cff !important;
-  opacity: 1 !important;
-}
-
-.service-tab-link.w--current .service-tags-wrapper,
-.service-tab-link.active .service-tags-wrapper {
-  display: block !important;
-  opacity: 1 !important;
-  max-height: 200px !important;
+.single-service-wrap {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 24px !important;
   transition: all 0.4s ease !important;
 }
 
-.service-tab-link:not(.w--current):not(.active) .service-tags-wrapper {
-  display: none !important;
-}
-
-.service-tab-link.w--current .service-tab-link-image-wrap,
-.service-tab-link.active .service-tab-link-image-wrap {
-  display: block !important;
+.single-service-wrap:hover .single-service-hover-bg {
   opacity: 1 !important;
+  transform: scale(1) !important;
 }
 
-.service-tab-link:not(.w--current):not(.active) .service-tab-link-image-wrap {
-  display: none !important;
+.single-service-wrap:hover .single-service-name {
+  color: #2d8cff !important;
 }
 
 /* ==========================================================================

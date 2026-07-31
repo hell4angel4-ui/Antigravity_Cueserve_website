@@ -196,6 +196,62 @@
 }
 
 /* ==========================================================================
+   Projects / Works Page Styling & Hover Animations
+   ========================================================================== */
+
+.projects-grid-wrap {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 30px !important;
+}
+
+@media screen and (max-width: 991px) {
+  .projects-grid-wrap {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.single-project-wrap {
+  position: relative !important;
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.single-project-image-wrap {
+  display: block !important;
+  overflow: hidden !important;
+  border-radius: 24px !important;
+  position: relative !important;
+}
+
+.project-image.single-project {
+  width: 100% !important;
+  height: 380px !important;
+  object-fit: cover !important;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.full-width-project .project-image.single-project {
+  height: 520px !important;
+}
+
+@media screen and (max-width: 767px) {
+  .project-image.single-project,
+  .full-width-project .project-image.single-project {
+    height: 280px !important;
+  }
+}
+
+.single-project-wrap:hover .project-image.single-project {
+  transform: scale(1.06) !important;
+}
+
+.single-project-wrap:hover .single-project-name {
+  color: #2d8cff !important;
+}
+
+/* ==========================================================================
    Contact Us Page Custom Styles & Form Checkboxes
    ========================================================================== */
 

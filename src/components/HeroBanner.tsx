@@ -74,17 +74,13 @@ export default function HeroBanner() {
   const renderLogoGroup = (keyPrefix: string) => (
     <>
       {techItems.map((item, index) => (
-        <div key={`${keyPrefix}-${index}`} className="tech-logo-item">
-          <div className="tech-logo-icon-wrap">
-            <img
-              src={item.icon}
-              alt={`${item.name} logo`}
-              className="tech-logo-img"
-              loading="lazy"
-            />
-          </div>
-          <span className="tech-logo-text">{item.name}</span>
-          <span className="tech-logo-divider">✦</span>
+        <div key={`${keyPrefix}-${index}`} className="tech-logo-item" title={item.name}>
+          <img
+            src={item.icon}
+            alt={`${item.name} logo`}
+            className="tech-logo-img"
+            loading="lazy"
+          />
         </div>
       ))}
     </>
@@ -140,6 +136,7 @@ export default function HeroBanner() {
                           <div className="after-banner-ticker-flex">
                             {renderLogoGroup('group-1')}
                             {renderLogoGroup('group-2')}
+                            {renderLogoGroup('group-3')}
                           </div>
                         </div>
                         

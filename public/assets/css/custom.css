@@ -25,15 +25,15 @@
 }
 
 /* ==========================================================================
-   Tech Stack Marquee Ticker Styles
+   Tech Stack Marquee Ticker Styles (Continuous Smooth Scroll)
    ========================================================================== */
 
-@keyframes marquee-scroll {
+@keyframes marquee-infinite {
   0% {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-33.3333%, 0, 0);
   }
 }
 
@@ -42,15 +42,16 @@ html.w-mod-js:not(.w-mod-ix3) .after-banner-ticker-wrap,
 .after-banner-ticker-wrap {
   visibility: visible !important;
   opacity: 1 !important;
+  display: block !important;
   overflow: hidden !important;
   width: 100% !important;
-  padding: 16px 0 !important;
-  background: rgba(10, 25, 64, 0.88) !important;
+  padding: 22px 0 !important;
+  background: rgba(10, 25, 64, 0.92) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
   position: relative !important;
   z-index: 10 !important;
 }
@@ -59,7 +60,7 @@ html.w-mod-js:not(.w-mod-ix3) .after-banner-ticker-wrap,
   display: flex !important;
   align-items: center !important;
   width: max-content !important;
-  animation: marquee-scroll 35s linear infinite !important;
+  animation: marquee-infinite 28s linear infinite !important;
   will-change: transform;
 }
 
@@ -70,57 +71,39 @@ html.w-mod-js:not(.w-mod-ix3) .after-banner-ticker-wrap,
 .tech-logo-item {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 12px !important;
-  padding: 10px 22px !important;
-  margin: 0 10px !important;
-  background: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: 50px !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  cursor: pointer !important;
-  user-select: none !important;
+  justify-content: center !important;
+  padding: 0 10px !important;
+  margin: 0 35px !important;
+  height: 48px !important;
   flex-shrink: 0 !important;
 }
 
-.tech-logo-item:hover {
-  background: rgba(45, 140, 255, 0.2) !important;
-  border-color: rgba(45, 140, 255, 0.6) !important;
-  transform: translateY(-3px) scale(1.03) !important;
-  box-shadow: 0 8px 24px rgba(45, 140, 255, 0.3) !important;
-}
-
-.tech-logo-icon-wrap {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
 .tech-logo-img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  transition: transform 0.3s ease;
+  height: 42px !important;
+  width: auto !important;
+  max-width: 75px !important;
+  object-fit: contain !important;
+  opacity: 0.9 !important;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4)) !important;
+  transition: all 0.3s ease !important;
 }
 
 .tech-logo-item:hover .tech-logo-img {
-  transform: scale(1.15) rotate(4deg);
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
+  filter: drop-shadow(0 4px 14px rgba(45, 140, 255, 0.7)) !important;
 }
 
-.tech-logo-text {
-  font-family: 'Instrument Sans', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.4px;
-  white-space: nowrap;
-}
-
-.tech-logo-divider {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 14px;
-  margin-left: 4px;
+@media screen and (max-width: 767px) {
+  .tech-logo-item {
+    margin: 0 20px !important;
+    height: 38px !important;
+  }
+  .tech-logo-img {
+    height: 32px !important;
+    max-width: 55px !important;
+  }
+  .after-banner-ticker-wrap {
+    padding: 16px 0 !important;
+  }
 }
